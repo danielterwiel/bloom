@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npx turbo build --filter=@repo/web",
-  "installCommand": "npm ci",
+  "buildCommand": "bunx turbo build --filter=@repo/web",
+  "installCommand": "bun install --frozen-lockfile",
   "outputDirectory": "apps/web/.vercel/output",
   "framework": null
 }
