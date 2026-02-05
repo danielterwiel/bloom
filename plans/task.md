@@ -195,9 +195,9 @@ Configure Playfair Display and Inter fonts.
 
 #### Deliverables
 
-- [ ] `packages/styles/src/fonts.css` with @font-face or Google Fonts import
-- [ ] Font variables in base.css: `--font-heading`, `--font-body`
-- [ ] Export fonts.css from package
+- [x] `packages/styles/src/fonts.css` with @font-face or Google Fonts import
+- [x] Font variables in base.css: `--font-heading`, `--font-body`
+- [x] Export fonts.css from package
 
 #### Acceptance Criteria
 

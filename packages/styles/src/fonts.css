@@ -1,0 +1,9 @@
+/**
+ * Font Configuration
+ * - Playfair Display: Used for headings (serif, elegant)
+ * - Inter: Used for body text (sans-serif, highly legible)
+ *
+ * Using Google Fonts with display=swap for better performance
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");

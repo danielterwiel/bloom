@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     "./base.css": "./src/base.css",
+    "./fonts.css": "./src/fonts.css",
     "./tailwind.config": {
       "types": "./dist/tailwind.config.d.ts",
       "import": "./dist/tailwind.config.js"
