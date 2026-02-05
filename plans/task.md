@@ -1195,12 +1195,12 @@ Comprehensive E2E tests for all functionality.
 
 #### Deliverables
 
-- [ ] `tests/e2e/navigation.spec.ts` - nav links, view transitions
-- [ ] `tests/e2e/landing.spec.ts` - hero, CTA
-- [ ] `tests/e2e/about.spec.ts` - content renders
-- [ ] `tests/e2e/insights.spec.ts` - all charts render
-- [ ] `tests/e2e/companies.spec.ts` - data loads, virtualization
-- [ ] `tests/e2e/filters.spec.ts` - all filters, URL state
+- [x] `tests/e2e/navigation.spec.ts` - nav links, view transitions
+- [x] `tests/e2e/landing.spec.ts` - hero, CTA
+- [x] `tests/e2e/about.spec.ts` - content renders
+- [x] `tests/e2e/insights.spec.ts` - all charts render
+- [x] `tests/e2e/companies.spec.ts` - data loads, virtualization
+- [x] `tests/e2e/filters.spec.ts` - all filters, URL state
 
 #### Acceptance Criteria
 

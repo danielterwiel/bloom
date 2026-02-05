@@ -1525,3 +1525,70 @@ Acceptance criteria verified:
 
 Next up: PRD-47 (E2E Test Suite) - depends on PRD-46 ✓
 
+=== PRD-47: E2E Test Suite ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created tests/e2e/navigation.spec.ts with 8 tests:
+  - Header logo and nav links visibility
+  - Navigation to About, Insights, Companies pages via nav links
+  - Navigation back to Home from another page
+  - Logo links to home page
+  - Footer displays on all pages (home, about, insights)
+  - Mobile menu button exists on mobile viewport
+- Created tests/e2e/landing.spec.ts with 7 tests:
+  - Hero section renders with headline "Flower Industry Directory"
+  - Stats section displays (1000+, Companies, Countries, Categories)
+  - CTA button links to /companies
+  - View Insights link exists and links to /insights
+  - Explore by Category section renders
+  - Category cards link to filtered companies page (e.g., /companies?category=Florist)
+  - CTA navigates to companies page
+- Created tests/e2e/about.spec.ts with 5 tests:
+  - Headline "About Bloom" renders
+  - Mission section cards (Our Mission, What We Offer, Our Commitment)
+  - Why Choose Bloom section with 4 features
+  - CTA links to companies and insights
+  - Page has correct title
+- Created tests/e2e/insights.spec.ts with 6 tests:
+  - Headline "Insights" renders
+  - All four chart sections render (by ID)
+  - Chart section headings are present
+  - Key Statistics section renders (1,000+ Total Companies)
+  - Charts render canvas/svg when scrolled into view (client:visible hydration)
+  - Browse Companies CTA works
+- Created tests/e2e/companies.spec.ts with 7 tests:
+  - Headline "Browse Companies" renders
+  - Loads company data and displays results count (1,000)
+  - Company cards render in virtualized list (data-index attribute)
+  - Company cards display expected fields (Location, Employees, Founded, Type)
+  - Virtual list only renders visible items (< 50 DOM items for 1000 records)
+  - Search filter reduces results
+  - API endpoint returns valid JSON with 1000 records
+- Created tests/e2e/filters.spec.ts with 8 tests:
+  - Text search filters results with debounce
+  - Text search updates URL (q= param)
+  - Clear all button resets filters and URL
+  - URL state preserved on reload
+  - URL with filter params loads filtered results directly
+  - Filter panel shows all filter controls
+  - Founded year range is displayed (1990-2024)
+  - Navigating from category card on landing page applies filter
+- Updated playwright.config.ts:
+  - Changed webServer command to "npm run dev --prefix apps/web" for targeted dev server
+- Removed tests/e2e/sample.spec.ts (old placeholder test replaced by comprehensive suite)
+
+Total: 41 tests × 2 browsers (chromium + firefox) = 82 test runs
+
+Acceptance criteria verified:
+- All test files created per spec (6 files)
+- Tests are non-flaky (use proper waits, not arbitrary timeouts where possible)
+- Tests cover navigation, landing, about, insights, companies, and filters
+- CI integration ready (playwright.config.ts has CI settings: retries, workers)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (471 tests: 330 ui + 141 data)
+
+Next up: PRD-48 (Theme Audit), PRD-49 (Performance Audit), PRD-50 (Accessibility Audit)
+All three can run in parallel since they depend only on PRD-47 ✓
+
