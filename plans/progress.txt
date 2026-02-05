@@ -1592,3 +1592,31 @@ Acceptance criteria verified:
 Next up: PRD-48 (Theme Audit), PRD-49 (Performance Audit), PRD-50 (Accessibility Audit)
 All three can run in parallel since they depend only on PRD-47 ✓
 
+=== PRD-51: GitHub Actions CI ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created .github/workflows/ci.yml with:
+  - Triggers on push to main and pull requests to main
+  - Concurrency group to cancel in-progress runs for same ref
+  - 10-minute timeout
+  - ubuntu-latest runner with Node.js 22
+  - npm ci for dependency installation (with npm cache)
+  - Sequential steps: lint, format:check, typecheck, test, build, e2e
+  - Playwright browser installation step (chromium + firefox with system deps)
+  - E2E tests run after build (dev server started by playwright.config.ts webServer)
+
+Note: Used npm (not bun) since packageManager in package.json specifies npm@10.9.0.
+The workflow is designed to complete well under the 10-minute target.
+
+Acceptance criteria verified:
+- CI runs on every PR (on: pull_request to main)
+- All checks must pass to merge (single job with sequential steps)
+- < 10 min total runtime (10-minute timeout set, steps are efficient)
+- npx turbo typecheck passes (7 successful tasks, 0 errors)
+- npx turbo test passes (471 tests: 330 ui + 141 data)
+
+Next up: PRD-48 (Theme Audit), PRD-49 (Performance Audit), PRD-50 (Accessibility Audit)
+Or: PRD-52 (Vercel Deployment) - depends on PRD-51 ✓
+

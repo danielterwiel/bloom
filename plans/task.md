@@ -1295,9 +1295,9 @@ Set up CI pipeline.
 
 #### Deliverables
 
-- [ ] `.github/workflows/ci.yml`
-- [ ] Steps: install, lint, format:check, test, build, e2e
-- [ ] Runs on PR and push to main
+- [x] `.github/workflows/ci.yml`
+- [x] Steps: install, lint, format:check, test, build, e2e
+- [x] Runs on PR and push to main
 
 #### Acceptance Criteria
 
