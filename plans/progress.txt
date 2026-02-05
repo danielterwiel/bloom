@@ -842,3 +842,69 @@ Acceptance criteria verified:
 Next up: PRD-22 (Export All Charts) - depends on PRD-19 ✓, PRD-20 ✓, PRD-21 ✓
 Or: PRD-27 (Astro App Initialization) to start Astro App Setup track
 
+=== PRD-22: Export All Charts ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Verified packages/ui/src/index.ts already has all chart exports:
+  - BaseChart, BaseChartProps
+  - BarChart, BarChartProps, BarChartSeries, BarChartDataPoint
+  - LineChart, LineChartProps, LineChartSeries, LineChartDataPoint
+  - DonutChart, DonutChartProps, DonutChartSegment
+- All exports use ES module re-export pattern for tree-shaking
+- Package uses TypeScript with declaration files for type support
+
+Acceptance criteria verified:
+- All charts importable: `import { BarChart, LineChart, DonutChart } from '@repo/ui'`
+- Tree-shaking works via ES module re-exports (bundlers can eliminate unused code)
+- npm run typecheck passes
+- npm run test passes
+
+Note: Chart Components Track (PRDs 18-22) is now COMPLETE.
+
+Next up: PRD-27 (Astro App Initialization) to start Astro App Setup track
+
+=== PRD-27: Astro App Initialization ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/package.json with dependencies:
+  - astro v5.7.5
+  - @astrojs/react for React integration
+  - @astrojs/vercel for Vercel deployment adapter
+  - @astrojs/check for Astro type checking
+  - @tailwindcss/vite for Tailwind v4 integration
+  - React 19.x and related type definitions
+  - Workspace dependencies: @repo/ui, @repo/data, @repo/styles
+- Created apps/web/astro.config.mjs with:
+  - Server output mode
+  - Vercel adapter
+  - React integration
+  - Tailwind v4 via Vite plugin
+- Created apps/web/tsconfig.json extending @repo/tsconfig/astro.json
+- Created apps/web/src/ directory structure:
+  - pages/ - Astro pages
+  - layouts/ - Layout components
+  - components/astro/ - Astro components
+  - components/react/ - React island components
+  - styles/global.css - Global CSS importing @repo/styles
+- Created apps/web/src/env.d.ts for Astro client types
+- Created basic index.astro page for verification
+- Created Counter.tsx React component to verify React integration works
+- Installed lightningcss-linux-arm64-gnu for ARM64 Linux compatibility
+- Removed apps/.gitkeep (no longer needed)
+
+Note: View Transitions will be added in PRD-28 (Base Layout) via the ViewTransitions component.
+
+Acceptance criteria verified:
+- `npm run dev` starts dev server on :4321
+- `npm run build` succeeds (outputs to .vercel/output)
+- React components can be imported (Counter.tsx uses @repo/ui Button)
+- npm run typecheck passes (7 tasks: 5 packages)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-28 (Base Layout) - depends on PRD-27 ✓
+Or: PRD-29 (Header & Footer) after PRD-28
+

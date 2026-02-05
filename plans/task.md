@@ -559,13 +559,13 @@ Ensure all charts exported from UI package.
 
 #### Deliverables
 
-- [ ] Update `packages/ui/src/index.ts` with chart exports
-- [ ] Verify tree-shaking works
+- [x] Update `packages/ui/src/index.ts` with chart exports
+- [x] Verify tree-shaking works
 
 #### Acceptance Criteria
 
-1. All charts importable: `import { BarChart, LineChart, DonutChart } from '@repo/ui'`
-2. Unused charts don't bloat bundle
+1. [x] All charts importable: `import { BarChart, LineChart, DonutChart } from '@repo/ui'`
+2. [x] Unused charts don't bloat bundle
 
 ---
 
@@ -712,14 +712,14 @@ Create Astro app with React integration.
 
 #### Deliverables
 
-- [ ] `apps/web/package.json`
-- [ ] `apps/web/astro.config.mjs`:
+- [x] `apps/web/package.json`
+- [x] `apps/web/astro.config.mjs`:
   - Vercel adapter
   - React integration
   - View Transitions
   - Tailwind integration
-- [ ] `apps/web/tsconfig.json` (extends @repo/tsconfig/astro)
-- [ ] `apps/web/src/` directory structure
+- [x] `apps/web/tsconfig.json` (extends @repo/tsconfig/astro)
+- [x] `apps/web/src/` directory structure
 
 #### Acceptance Criteria
 
