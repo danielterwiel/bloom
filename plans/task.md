@@ -385,10 +385,10 @@ Create Dialog/Modal using BaseUI primitive.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/components/dialog.tsx`
-- [ ] Uses BaseUI Dialog internally
-- [ ] Backdrop, close button, content area
-- [ ] Export from index.ts
+- [x] `packages/ui/src/components/dialog.tsx`
+- [x] Uses BaseUI Dialog internally
+- [x] Backdrop, close button, content area
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 

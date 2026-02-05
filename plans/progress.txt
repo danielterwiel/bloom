@@ -413,3 +413,52 @@ Acceptance criteria verified:
 
 Next up: PRD-15 (Dialog), PRD-16 (Slider), PRD-17 (MultiSelect)
 Or: PRD-23 (Data Types) to start the Data Package track
+
+=== PRD-15: Dialog Component ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/components/dialog.tsx with:
+  - Uses BaseUI Dialog primitives internally (Root, Trigger, Portal, Backdrop, Popup, Title, Description, Close)
+  - DialogProps interface with open, defaultOpen, onOpenChange, modal props
+  - DialogTrigger for opening the dialog
+  - DialogPortal for rendering in portal
+  - DialogBackdrop with animated opacity transition (bg-foreground/50)
+  - DialogContent (Popup) with centered positioning, animation, and theme styling
+  - DialogHeader and DialogFooter layout helpers for standard dialog structure
+  - DialogTitle with font-heading styling
+  - DialogDescription with text-foreground-muted styling
+  - DialogClose with default X icon and focus ring styling
+  - All components use forwardRef for ref forwarding
+  - All accept className prop that merges via cn()
+- Created packages/ui/src/__tests__/dialog.test.tsx with 40 tests:
+  - Tests for displayName of all 10 components
+  - Tests for children rendering
+  - Tests for className prop on all components
+  - Tests for standard HTML attributes
+  - Tests for controlled (open) and uncontrolled (defaultOpen) usage
+  - Tests for onOpenChange callback
+  - Tests for composition with all subcomponents
+- Updated packages/ui/src/index.ts to export:
+  - Dialog, DialogTrigger, DialogPortal, DialogBackdrop, DialogContent
+  - DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose
+  - All corresponding Props types
+
+Note: BaseUI Dialog provides built-in accessibility features:
+- Focus trapping inside modal
+- Escape key closes dialog
+- Click outside closes dialog (default behavior)
+- ARIA attributes for title and description
+
+Acceptance criteria verified:
+- Opens/closes correctly (via BaseUI primitives)
+- Escape key closes (built-in from BaseUI)
+- Click outside closes (default BaseUI behavior)
+- Focus trapped inside (built-in from BaseUI modal mode)
+- Unit tests pass: 136 tests total (40 dialog + 21 card + 11 badge + 16 checkbox + 16 select + 11 input + 13 button + 6 utils + 2 sample)
+- npm run typecheck passes (2 successful tasks)
+- npm run test passes
+
+Next up: PRD-16 (Slider), PRD-17 (MultiSelect)
+Or: PRD-23 (Data Types) to start the Data Package track
