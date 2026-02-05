@@ -66,3 +66,4 @@ export {
   type LineChartSeries,
   type LineChartDataPoint,
 } from "./charts/line-chart";
+export { DonutChart, type DonutChartProps, type DonutChartSegment } from "./charts/donut-chart";

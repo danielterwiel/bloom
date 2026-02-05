@@ -805,3 +805,40 @@ Acceptance criteria verified:
 Next up: PRD-21 (Donut Chart), PRD-22 (Export All Charts)
 Or: PRD-27 (Astro App Initialization) to start Astro App Setup track
 
+=== PRD-21: Donut Chart ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/charts/donut-chart.tsx with:
+  - DonutChart component for displaying proportional data
+  - DonutChartProps interface with segments, className, showLegend, title, innerRadius, showLabels, showPercentages
+  - DonutChartSegment interface with label, value, and optional color
+  - Uses theme colors (chart-1 through chart-5) defined as oklch values
+  - Custom canvas-based rendering with ResizeObserver for responsive sizing
+  - Configurable inner radius (0 = pie chart, 0.6 default = donut)
+  - Optional labels on segments showing percentages or values
+  - Legend component showing segment colors, labels, and values/percentages
+  - Empty state handling with "No data available" message
+  - High-DPI canvas support via devicePixelRatio
+- Created packages/ui/src/__tests__/charts/donut-chart.test.tsx with 35 tests:
+  - Component structure tests (displayName, props)
+  - Segments data tests (empty, single, multiple, custom colors)
+  - Configuration options tests (showLegend, title, innerRadius, showLabels, showPercentages)
+  - Interface tests (DonutChartSegment, DonutChartProps)
+  - Edge cases (zero values, decimals, large datasets, special chars, very small/large values, order preservation)
+- Updated packages/ui/src/index.ts to export DonutChart, DonutChartProps, DonutChartSegment
+
+Note: Unlike BarChart and LineChart which use uPlot, DonutChart uses custom canvas rendering since uPlot doesn't support pie/donut charts natively.
+
+Acceptance criteria verified:
+- Renders donut correctly (via custom canvas drawing with arc paths)
+- Uses theme colors (CHART_COLORS array with oklch values matching theme)
+- Responsive (ResizeObserver + canvas redraw on size change)
+- Unit tests pass: 437 tests total (330 ui + 107 data)
+- npm run typecheck passes (3 successful tasks)
+- npm run test passes
+
+Next up: PRD-22 (Export All Charts) - depends on PRD-19 ✓, PRD-20 ✓, PRD-21 ✓
+Or: PRD-27 (Astro App Initialization) to start Astro App Setup track
+
