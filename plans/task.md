@@ -581,8 +581,8 @@ Define FlowerCompany TypeScript interface.
 
 #### Deliverables
 
-- [ ] `packages/data/package.json`
-- [ ] `packages/data/src/types.ts` with:
+- [x] `packages/data/package.json`
+- [x] `packages/data/src/types.ts` with:
 
   ```typescript
   export interface FlowerCompany {
