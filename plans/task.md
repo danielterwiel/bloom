@@ -76,12 +76,12 @@ Configure Vitest for monorepo unit testing.
 Configure Playwright for E2E testing.
 
 #### Deliverables
-- [ ] Playwright installed at root
-- [ ] `playwright.config.ts` (baseURL: localhost:4321)
-- [ ] `tests/e2e/sample.spec.ts` (placeholder)
-- [ ] `e2e` script in root package.json
-- [ ] `e2e` pipeline in turbo.json
-- [ ] Browsers installed: `bunx playwright install`
+- [x] Playwright installed at root
+- [x] `playwright.config.ts` (baseURL: localhost:4321)
+- [x] `tests/e2e/sample.spec.ts` (placeholder)
+- [x] `e2e` script in root package.json
+- [x] `e2e` pipeline in turbo.json
+- [x] Browsers installed: `bunx playwright install`
 
 #### Acceptance Criteria
 1. `bun run e2e` runs Playwright

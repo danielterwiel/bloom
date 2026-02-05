@@ -64,3 +64,36 @@ Acceptance criteria verified:
 
 Next up: PRD-4 (Playwright Setup), PRD-6 (Tailwind Theme Tokens)
 Both can run in parallel
+
+=== PRD-4: Playwright Setup ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Installed @playwright/test at root level
+- Created playwright.config.ts with:
+  - baseURL: http://localhost:4321
+  - testDir: ./tests/e2e
+  - Projects for chromium and firefox browsers
+  - webServer config that starts npm run dev (for when Astro app exists)
+  - CI-friendly settings (retries, workers)
+- Created tests/e2e/sample.spec.ts with:
+  - Placeholder test that passes immediately
+  - Skipped test for navigation (will work after PRD-27)
+- Updated e2e script in package.json to run "playwright test" directly
+  (E2E tests run at root level, not per-package via turbo)
+- Installed chromium and firefox browsers via npx playwright install
+
+Note: System dependencies warning shown but browsers are installed correctly.
+The webServer config will automatically start the dev server when E2E tests run
+once the Astro app is configured in PRD-27.
+
+Acceptance criteria verified:
+- npm run e2e will run Playwright (config ready)
+- Placeholder test structure works (4 tests detected: 2 tests × 2 browsers)
+- Chrome/Firefox browsers available (version 1.58.1)
+- npm run typecheck passes
+- npm run test passes (2 unit tests)
+
+Next up: PRD-5 (Biome, Oxlint & Lefthook) - depends on PRD-3 ✓ and PRD-4 ✓
+Or: PRD-6 (Tailwind v4 Theme Tokens) - depends on PRD-2 ✓
