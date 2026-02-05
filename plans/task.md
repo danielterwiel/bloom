@@ -1098,15 +1098,15 @@ Add debounced text search.
 
 #### Deliverables
 
-- [ ] Search Input in FilterPanel
-- [ ] Debounce (300ms)
-- [ ] Searches name + description
+- [x] Search Input in FilterPanel
+- [x] Debounce (300ms)
+- [x] Searches name + description
 
 #### Acceptance Criteria
 
-1. Input renders
-2. Debounce works (no search on every keystroke)
-3. Results filter correctly
+1. [x] Input renders
+2. [x] Debounce works (no search on every keystroke)
+3. [x] Results filter correctly
 
 ---
 

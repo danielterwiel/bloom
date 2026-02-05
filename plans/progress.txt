@@ -1401,3 +1401,31 @@ Note: Filter Components Track (PRDs 42-45) started. PRD-42 complete.
 Next up: PRD-43 (Text Search Filter) - depends on PRD-42 ✓
 Or: PRD-44 (Multi-Select Filters) - depends on PRD-42 ✓
 
+=== PRD-43: Text Search Filter ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Updated apps/web/src/components/react/FilterPanel.tsx with:
+  - useDebounce custom hook for 300ms debounced value
+  - Local searchText state for immediate input feedback
+  - Input component from @repo/ui with search icon
+  - Debounced filter updates to prevent search on every keystroke
+  - Sync logic to clear local state when filters are cleared externally
+  - Search input spans full width of filter grid
+- Search functionality:
+  - Uses filterByText from @repo/data (already implemented in PRD-25)
+  - Searches both name and description fields (case-insensitive partial match)
+  - Results update after 300ms debounce delay
+  - Clear All button resets both local state and filters
+
+Acceptance criteria verified:
+- Input renders (Input component with search icon in FilterPanel)
+- Debounce works (useDebounce hook with 300ms delay)
+- Results filter correctly (via filterByText in applyAllFilters)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-44 (Multi-Select Filters) - depends on PRD-42 ✓, PRD-17 ✓
+Or: PRD-45 (Single-Select & Range Filters) - depends on PRD-42 ✓, PRD-11 ✓, PRD-16 ✓
+

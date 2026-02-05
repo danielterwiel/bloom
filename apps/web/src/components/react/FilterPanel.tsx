@@ -1,6 +1,7 @@
 /** @jsxImportSource react */
 import * as React from "react";
 import type { CompanyFilters } from "@repo/data";
+import { Input } from "@repo/ui";
 
 export interface FilterPanelProps {
   filters: CompanyFilters;
@@ -8,6 +9,26 @@ export interface FilterPanelProps {
   resultsCount: number;
   totalCount: number;
   className?: string;
+}
+
+/**
+ * Custom hook for debounced value
+ * Returns a debounced version of the value that only updates after the delay
+ */
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = React.useState<T>(value);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
 }
 
 /**
@@ -25,6 +46,30 @@ export function FilterPanel({
   totalCount,
   className = "",
 }: FilterPanelProps) {
+  // Local state for the text input (updates immediately for responsive UX)
+  const [searchText, setSearchText] = React.useState(filters.text ?? "");
+
+  // Debounce the search text with 300ms delay
+  const debouncedSearchText = useDebounce(searchText, 300);
+
+  // Update filters when debounced value changes
+  React.useEffect(() => {
+    // Only update if the debounced value differs from current filter
+    if (debouncedSearchText !== (filters.text ?? "")) {
+      onFiltersChange({
+        ...filters,
+        text: debouncedSearchText || undefined,
+      });
+    }
+  }, [debouncedSearchText, filters, onFiltersChange]);
+
+  // Sync local state if filters.text is cleared externally (e.g., Clear All)
+  React.useEffect(() => {
+    if (!filters.text && searchText) {
+      setSearchText("");
+    }
+  }, [filters.text, searchText]);
+
   const hasActiveFilters = React.useMemo(() => {
     return (
       (filters.text && filters.text.trim().length > 0) ||
@@ -41,8 +86,13 @@ export function FilterPanel({
   }, [filters]);
 
   const handleClearAll = React.useCallback(() => {
+    setSearchText("");
     onFiltersChange({});
   }, [onFiltersChange]);
+
+  const handleSearchChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(event.target.value);
+  }, []);
 
   return (
     <div className={`rounded-card bg-background p-card shadow-card ${className}`}>
@@ -81,10 +131,26 @@ export function FilterPanel({
 
       {/* Filter controls grid - placeholders for filter components (PRDs 43-45) */}
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {/* Text search filter slot (PRD-43) */}
-        <div className="sm:col-span-2 lg:col-span-3 xl:col-span-4">
-          <div
-            className="h-10 rounded-md border border-dashed border-border bg-muted/30"
+        {/* Text search filter (PRD-43) */}
+        <div className="relative sm:col-span-2 lg:col-span-3 xl:col-span-4">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg
+              className="h-4 w-4 text-foreground-muted"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path strokeLinecap="round" d="m21 21-4.35-4.35" />
+            </svg>
+          </div>
+          <Input
+            type="text"
+            placeholder="Search companies by name or description..."
+            value={searchText}
+            onChange={handleSearchChange}
+            className="pl-10"
             data-slot="text-search"
           />
         </div>
