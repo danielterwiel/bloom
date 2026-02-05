@@ -629,13 +629,13 @@ Generate 1000 realistic flower company records.
 
 #### Deliverables
 
-- [ ] `packages/data/src/companies.ts`
-- [ ] 1000 records with realistic distribution:
+- [x] `packages/data/src/companies.ts`
+- [x] 1000 records with realistic distribution:
   - Categories: weighted toward Florist, Nursery, Wholesale
   - Countries: USA 40%, Netherlands 15%, Colombia 10%, others
   - Founded: bell curve 2005-2015
   - Certifications: 60% have at least one
-- [ ] Deterministic generation (seeded random)
+- [x] Deterministic generation (seeded random)
 
 #### Acceptance Criteria
 

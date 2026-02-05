@@ -11,3 +11,6 @@ export {
   CERTIFICATIONS,
   COUNTRIES,
 } from "./types";
+
+// Company Data
+export { companies, generateCompanies } from "./companies";

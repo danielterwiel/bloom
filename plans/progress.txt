@@ -587,3 +587,46 @@ Note: Data Package Track C started. PRD-23 complete.
 Next up: PRD-24 (Company Data Generation) - depends on PRD-23 ✓
 Or: PRD-18 (Base Chart Wrapper) - depends on PRD-8 ✓
 Or: PRD-27 (Astro App Initialization) - depends on PRD-6 ✓, PRD-8 ✓
+
+=== PRD-24: Company Data Generation ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/data/src/companies.ts with:
+  - Seeded pseudo-random number generator (Mulberry32) for deterministic generation
+  - Weighted distribution functions for country and category selection
+  - Bell curve (Box-Muller transform) for founded year generation
+  - Company name generation with prefixes, suffixes, and uniqueness handling
+  - City-by-country mapping for realistic headquarters
+  - Description templates for varied company descriptions
+  - Website URL generation from company name
+  - Placeholder image URL generation using picsum.photos
+  - generateCompanies(seed) function for custom seed
+  - Pre-exported `companies` array with seed 42
+- Updated packages/data/src/index.ts to export companies and generateCompanies
+- Created packages/data/src/__tests__/companies.test.ts with 28 comprehensive tests:
+  - Count validation (exactly 1000 records)
+  - Deterministic generation tests (same seed = same output)
+  - Field validation tests for all 14 fields
+  - Distribution tests for country (USA ~40%, Netherlands ~15%, Colombia ~10%)
+  - Distribution tests for category (Florist, Nursery, Wholesale weighted higher)
+  - Distribution tests for founded year (bell curve around 2010)
+  - Distribution tests for certifications (~60% have at least one)
+  - Uniqueness tests (all IDs unique)
+
+Acceptance criteria verified:
+- Exactly 1000 records generated
+- All fields populated with valid values (verified via field validation tests)
+- Distribution matches spec:
+  - USA ~40%, Netherlands ~15%, Colombia ~10% (verified)
+  - Categories weighted toward Florist, Nursery, Wholesale (>50% combined)
+  - Founded year bell curve 2005-2015 (mean ~2010)
+  - ~60% have certifications (verified 50-70% range)
+- Unit tests pass: 262 tests total (65 data + 197 ui)
+- npm run typecheck passes (3 successful tasks)
+- npm run test passes
+
+Next up: PRD-25 (Filter Utilities) - depends on PRD-23 ✓
+Or: PRD-18 (Base Chart Wrapper) - depends on PRD-8 ✓
+Or: PRD-27 (Astro App Initialization) - depends on PRD-6 ✓, PRD-8 ✓
