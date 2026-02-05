@@ -887,15 +887,15 @@ Add business type bar chart to insights.
 
 #### Deliverables
 
-- [ ] React island component wrapping BarChart
-- [ ] Data aggregation for B2B/B2C/Both
-- [ ] `client:visible` directive
+- [x] React island component wrapping BarChart
+- [x] Data aggregation for B2B/B2C/Both
+- [x] `client:visible` directive
 
 #### Acceptance Criteria
 
-1. Chart renders when visible
-2. Shows correct distribution
-3. Uses theme colors
+1. [x] Chart renders when visible
+2. [x] Shows correct distribution
+3. [x] Uses theme colors
 
 ---
 

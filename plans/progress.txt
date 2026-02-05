@@ -1150,3 +1150,35 @@ Acceptance criteria verified:
 Next up: PRD-34 (Business Type Chart), PRD-35 (Founding Year Chart),
 PRD-36 (Geographic Distribution Chart) - all can be done in parallel
 
+=== PRD-34: Business Type Chart ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/components/react/BusinessTypeChart.tsx with:
+  - React island component wrapping BarChart from @repo/ui
+  - Data aggregation using useMemo to count companies per business type (B2B/B2C/Both)
+  - Imports companies and BUSINESS_TYPES from @repo/data
+  - Single series bar chart showing company counts per type
+  - Configured BarChart with showLegend=false (single series)
+- Updated apps/web/src/pages/insights.astro to:
+  - Import BusinessTypeChart component
+  - Replace placeholder with actual chart using client:visible directive
+
+Note: The chart uses client:visible which means it only hydrates when scrolled into view,
+improving initial page load performance.
+
+Acceptance criteria verified:
+- Chart renders when visible (via client:visible directive)
+- Shows correct distribution (aggregated B2B/B2C/Both counts from 1000 company records)
+- Uses theme colors (BarChart uses CHART_COLORS matching theme tokens)
+- tsc --noEmit passes (0 errors)
+- Tests pass (872 tests pass, 2 pre-existing failures in base-chart mock and e2e config)
+
+Note: Pre-existing test failures are unrelated to this PR:
+1. ResizeObserver mock issue in base-chart.test.tsx
+2. Missing tsconfig.json for e2e tests
+
+Next up: PRD-35 (Founding Year Chart), PRD-36 (Geographic Distribution Chart)
+Or: PRD-38 (Companies Page Shell) - depends on PRD-29 ✓
+

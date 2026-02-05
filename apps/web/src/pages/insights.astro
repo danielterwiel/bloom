@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { CategoryDistributionChart } from "../components/react/CategoryDistributionChart";
+import { BusinessTypeChart } from "../components/react/BusinessTypeChart";
 ---
 
 <BaseLayout title="Industry Insights | Bloom" description="Explore visual analytics and data-driven insights about the global flower industry, including category distributions, business trends, and geographic patterns.">
@@ -45,20 +46,12 @@ import { CategoryDistributionChart } from "../components/react/CategoryDistribut
           </div>
         </div>
 
-        <!-- Business Type Chart Placeholder -->
+        <!-- Business Type Chart -->
         <div class="rounded-card bg-background p-card shadow-card" id="business-type-chart">
           <h2 class="font-heading text-xl font-semibold text-foreground">Business Types</h2>
           <p class="mt-2 text-sm text-foreground-muted">Distribution of B2B, B2C, and hybrid businesses</p>
-          <div class="mt-6 flex h-64 items-center justify-center rounded-lg bg-muted/50">
-            <div class="text-center text-foreground-muted">
-              <svg class="mx-auto h-12 w-12 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 20V10" stroke-linecap="round"/>
-                <path d="M18 20V4" stroke-linecap="round"/>
-                <path d="M6 20v-6" stroke-linecap="round"/>
-              </svg>
-              <p class="mt-2 text-sm">Bar Chart</p>
-              <p class="text-xs opacity-75">Loading...</p>
-            </div>
+          <div class="mt-6">
+            <BusinessTypeChart client:visible />
           </div>
         </div>
 
