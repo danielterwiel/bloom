@@ -1,0 +1,168 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Industry Insights | Bloom" description="Explore visual analytics and data-driven insights about the global flower industry, including category distributions, business trends, and geographic patterns.">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-section">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute top-10 left-20 w-72 h-72 rounded-full bg-chart-1/5 blur-3xl"></div>
+      <div class="absolute bottom-10 right-20 w-64 h-64 rounded-full bg-chart-2/5 blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-chart-3/5 blur-3xl"></div>
+    </div>
+
+    <div class="mx-auto max-w-4xl px-content text-center">
+      <!-- Chart icon -->
+      <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-chart-1/10">
+        <svg class="h-8 w-8 text-chart-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 20V10" stroke-linecap="round"/>
+          <path d="M12 20V4" stroke-linecap="round"/>
+          <path d="M6 20v-6" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h1 class="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+        Industry <span class="text-chart-1">Insights</span>
+      </h1>
+      <p class="mt-6 text-lg text-foreground-muted">
+        Discover patterns and trends in the global flower industry through interactive charts and data visualizations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Charts Grid Section -->
+  <section class="bg-surface py-section">
+    <div class="mx-auto max-w-6xl px-content">
+      <div class="grid gap-8 md:grid-cols-2">
+        <!-- Category Distribution Chart Placeholder -->
+        <div class="rounded-card bg-background p-card shadow-card" id="category-chart">
+          <h2 class="font-heading text-xl font-semibold text-foreground">Category Distribution</h2>
+          <p class="mt-2 text-sm text-foreground-muted">Breakdown of companies by business category</p>
+          <div class="mt-6 flex h-64 items-center justify-center rounded-lg bg-muted/50">
+            <div class="text-center text-foreground-muted">
+              <svg class="mx-auto h-12 w-12 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a10 10 0 0110 10"/>
+                <path d="M12 12V2"/>
+                <path d="M12 12l7.07 7.07"/>
+              </svg>
+              <p class="mt-2 text-sm">Donut Chart</p>
+              <p class="text-xs opacity-75">Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Business Type Chart Placeholder -->
+        <div class="rounded-card bg-background p-card shadow-card" id="business-type-chart">
+          <h2 class="font-heading text-xl font-semibold text-foreground">Business Types</h2>
+          <p class="mt-2 text-sm text-foreground-muted">Distribution of B2B, B2C, and hybrid businesses</p>
+          <div class="mt-6 flex h-64 items-center justify-center rounded-lg bg-muted/50">
+            <div class="text-center text-foreground-muted">
+              <svg class="mx-auto h-12 w-12 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 20V10" stroke-linecap="round"/>
+                <path d="M18 20V4" stroke-linecap="round"/>
+                <path d="M6 20v-6" stroke-linecap="round"/>
+              </svg>
+              <p class="mt-2 text-sm">Bar Chart</p>
+              <p class="text-xs opacity-75">Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Founding Year Chart Placeholder -->
+        <div class="rounded-card bg-background p-card shadow-card" id="founding-year-chart">
+          <h2 class="font-heading text-xl font-semibold text-foreground">Companies by Founding Year</h2>
+          <p class="mt-2 text-sm text-foreground-muted">Timeline of company establishments over the years</p>
+          <div class="mt-6 flex h-64 items-center justify-center rounded-lg bg-muted/50">
+            <div class="text-center text-foreground-muted">
+              <svg class="mx-auto h-12 w-12 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 12h4l3-9 4 18 3-9h4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <p class="mt-2 text-sm">Line Chart</p>
+              <p class="text-xs opacity-75">Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Geographic Distribution Chart Placeholder -->
+        <div class="rounded-card bg-background p-card shadow-card" id="geographic-chart">
+          <h2 class="font-heading text-xl font-semibold text-foreground">Geographic Distribution</h2>
+          <p class="mt-2 text-sm text-foreground-muted">Top countries by number of flower companies</p>
+          <div class="mt-6 flex h-64 items-center justify-center rounded-lg bg-muted/50">
+            <div class="text-center text-foreground-muted">
+              <svg class="mx-auto h-12 w-12 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 20V10" stroke-linecap="round"/>
+                <path d="M18 20V4" stroke-linecap="round"/>
+                <path d="M6 20v-6" stroke-linecap="round"/>
+              </svg>
+              <p class="mt-2 text-sm">Bar Chart</p>
+              <p class="text-xs opacity-75">Loading...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary Stats Section -->
+  <section class="py-section">
+    <div class="mx-auto max-w-6xl px-content">
+      <h2 class="text-center font-heading text-3xl font-semibold text-foreground">
+        Key Statistics
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-foreground-muted">
+        A snapshot of the flower industry data in our directory.
+      </p>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-card bg-surface p-card text-center shadow-card">
+          <div class="text-4xl font-bold text-chart-1">1,000+</div>
+          <div class="mt-2 text-sm text-foreground-muted">Total Companies</div>
+        </div>
+        <div class="rounded-card bg-surface p-card text-center shadow-card">
+          <div class="text-4xl font-bold text-chart-2">10</div>
+          <div class="mt-2 text-sm text-foreground-muted">Categories</div>
+        </div>
+        <div class="rounded-card bg-surface p-card text-center shadow-card">
+          <div class="text-4xl font-bold text-chart-3">20+</div>
+          <div class="mt-2 text-sm text-foreground-muted">Countries</div>
+        </div>
+        <div class="rounded-card bg-surface p-card text-center shadow-card">
+          <div class="text-4xl font-bold text-chart-4">20+</div>
+          <div class="mt-2 text-sm text-foreground-muted">Specialties</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-surface py-section">
+    <div class="mx-auto max-w-4xl px-content text-center">
+      <h2 class="font-heading text-3xl font-semibold text-foreground">
+        Explore the Data
+      </h2>
+      <p class="mt-4 text-foreground-muted">
+        Want to dive deeper? Browse our comprehensive company directory with powerful filters.
+      </p>
+      <div class="mt-8">
+        <a
+          href="/companies"
+          class="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-base font-medium text-primary-foreground transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        >
+          Browse Companies
+          <svg class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* View Transition animations */
+  h1 {
+    view-transition-name: insights-title;
+  }
+</style>

@@ -841,15 +841,15 @@ Create insights page structure (charts added later).
 
 #### Deliverables
 
-- [ ] `apps/web/src/pages/insights.astro`
-- [ ] Page title and intro text
-- [ ] Grid layout for charts (placeholders)
-- [ ] `client:visible` directive ready
+- [x] `apps/web/src/pages/insights.astro`
+- [x] Page title and intro text
+- [x] Grid layout for charts (placeholders)
+- [x] `client:visible` directive ready
 
 #### Acceptance Criteria
 
-1. Page renders at /insights
-2. Layout ready for chart islands
+1. [x] Page renders at /insights
+2. [x] Layout ready for chart islands
 
 ---
 

@@ -1049,3 +1049,45 @@ Acceptance criteria verified:
 Next up: PRD-32 (Insights Page Shell) - depends on PRD-29 ✓
 Or: PRD-37 (Companies API Endpoint) - depends on PRD-24 ✓, PRD-27 ✓
 
+=== PRD-32: Insights Page Shell ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/pages/insights.astro with:
+  - Hero section with decorative background blur elements (chart-1, chart-2, chart-3 colors)
+  - Chart icon SVG in rounded container
+  - "Industry Insights" headline with font-heading styling
+  - Tagline about patterns and trends in the flower industry
+- Charts Grid Section with 4 placeholder cards:
+  - Category Distribution (donut chart placeholder with id="category-chart")
+  - Business Types (bar chart placeholder with id="business-type-chart")
+  - Companies by Founding Year (line chart placeholder with id="founding-year-chart")
+  - Geographic Distribution (bar chart placeholder with id="geographic-chart")
+  - Each card has title, description, and loading indicator
+  - Grid layout: 2 columns on md breakpoint
+  - All cards use rounded-card, bg-background, p-card, shadow-card styling
+- Key Statistics section with 4 stat cards:
+  - 1,000+ Total Companies (chart-1 color)
+  - 10 Categories (chart-2 color)
+  - 20+ Countries (chart-3 color)
+  - 20+ Specialties (chart-4 color)
+- CTA section with "Explore the Data" heading and Browse Companies button
+- View Transition animation via view-transition-name: insights-title on h1
+- All theme tokens used (colors, spacing, typography, shadows, radius)
+- Fully responsive design (mobile to desktop)
+- Placeholder div IDs ready for client:visible React islands
+
+Note: The placeholders include loading indicators and icons representing each chart type.
+React island components with client:visible directive will be added in PRDs 33-36.
+
+Acceptance criteria verified:
+- Page renders at /insights (file created at apps/web/src/pages/insights.astro)
+- Layout ready for chart islands (4 placeholder cards with IDs for mounting)
+- astro check passes (no errors)
+- tsc --noEmit passes (no errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-33 (Category Distribution Chart), PRD-34 (Business Type Chart), PRD-35 (Founding Year Chart), PRD-36 (Geographic Distribution Chart)
+Or: PRD-37 (Companies API Endpoint) - depends on PRD-24 ✓, PRD-27 ✓
+
