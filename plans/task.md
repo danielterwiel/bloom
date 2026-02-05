@@ -35,10 +35,10 @@ Create root package.json with Bun workspaces and turbo.json.
 Create packages/tsconfig with base, react, and astro configs.
 
 #### Deliverables
-- [ ] `packages/tsconfig/package.json`
-- [ ] `packages/tsconfig/base.json` (strict mode, modern ES)
-- [ ] `packages/tsconfig/react.json` (extends base, JSX)
-- [ ] `packages/tsconfig/astro.json` (extends base, Astro-specific)
+- [x] `packages/tsconfig/package.json`
+- [x] `packages/tsconfig/base.json` (strict mode, modern ES)
+- [x] `packages/tsconfig/react.json` (extends base, JSX)
+- [x] `packages/tsconfig/astro.json` (extends base, Astro-specific)
 
 #### Acceptance Criteria
 1. Package is recognized by workspace
