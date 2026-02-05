@@ -279,3 +279,39 @@ Acceptance criteria verified:
 
 Next up: PRD-11 (Select), PRD-12 (Checkbox), PRD-13 (Badge), PRD-14 (Card), PRD-15 (Dialog), PRD-16 (Slider)
 Or: PRD-23 (Data Types) to start the Data Package track
+
+=== PRD-11: Select Component ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/components/select.tsx with:
+  - Uses BaseUI Select primitives internally (Root, Trigger, Value, Icon, Portal, Positioner, Popup, List, Item, ItemIndicator, ItemText)
+  - SelectOption interface with value, label, and optional disabled properties
+  - SelectProps interface with options, placeholder, value, defaultValue, onValueChange, disabled, required, name, className
+  - Styled with theme tokens (bg-background, border-border, bg-surface, shadow-elevated, etc.)
+  - Custom ChevronIcon and CheckIcon SVG components
+  - Animation support with scale and opacity transitions
+  - data-[placeholder] styling for placeholder state
+  - data-[highlighted] and data-[selected] styling for items
+  - Keyboard navigation via BaseUI (built-in)
+- Created packages/ui/src/__tests__/select.test.tsx with 16 tests:
+  - Tests for displayName, options prop, placeholder, value, defaultValue
+  - Tests for onValueChange callback, disabled, required, name, className props
+  - Tests for empty options, disabled items, single option, option order
+  - Tests for SelectOption type requirements
+- Updated packages/ui/src/index.ts to export Select, SelectProps, SelectOption
+
+Note: BaseUI Select provides built-in keyboard navigation (arrow keys, Enter, Escape) and ARIA attributes.
+
+Acceptance criteria verified:
+- Opens/closes correctly (via BaseUI primitives)
+- Keyboard navigation works (built-in from BaseUI)
+- Selected value displays (via BaseUI Value component with items record)
+- Unit tests pass: 48 tests total (16 select + 11 input + 13 button + 6 utils + 2 sample)
+- npm run typecheck passes (2 successful tasks)
+- npm run test passes
+
+Next up: PRD-17 (MultiSelect) depends on PRD-11 ✓
+Or: PRD-12 (Checkbox), PRD-13 (Badge), PRD-14 (Card), PRD-15 (Dialog), PRD-16 (Slider)
+Or: PRD-23 (Data Types) to start the Data Package track

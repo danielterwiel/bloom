@@ -292,10 +292,10 @@ Create Select using BaseUI Select primitive.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/components/select.tsx`
-- [ ] Uses BaseUI Select internally
-- [ ] Styled with theme tokens
-- [ ] Export from index.ts
+- [x] `packages/ui/src/components/select.tsx`
+- [x] Uses BaseUI Select internally
+- [x] Styled with theme tokens
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 
