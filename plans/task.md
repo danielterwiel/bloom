@@ -362,10 +362,10 @@ Create Card container component.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/components/card.tsx`
-- [ ] Subcomponents: Card, CardHeader, CardContent, CardFooter
-- [ ] Uses --shadow-card, --radius-card
-- [ ] Export from index.ts
+- [x] `packages/ui/src/components/card.tsx`
+- [x] Subcomponents: Card, CardHeader, CardContent, CardFooter
+- [x] Uses --shadow-card, --radius-card
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 

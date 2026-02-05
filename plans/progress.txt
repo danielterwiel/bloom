@@ -378,3 +378,38 @@ Acceptance criteria verified:
 
 Next up: PRD-14 (Card), PRD-15 (Dialog), PRD-16 (Slider), PRD-17 (MultiSelect)
 Or: PRD-23 (Data Types) to start the Data Package track
+
+=== PRD-14: Card Component ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/components/card.tsx with:
+  - Card: Main container with rounded-card, bg-surface, shadow-card
+  - CardHeader: Flex column with gap-1.5 and p-card padding
+  - CardTitle: h3 with font-heading, text-lg, font-semibold
+  - CardDescription: p with text-sm, text-foreground-muted
+  - CardContent: div with p-card pt-0 padding
+  - CardFooter: flex items-center with p-card pt-0 padding
+  - All components use forwardRef for ref forwarding
+  - All accept className prop that merges via cn()
+- Created packages/ui/src/__tests__/card.test.tsx with 21 tests:
+  - Tests for displayName of all 6 components
+  - Tests for children rendering
+  - Tests for className prop on all components
+  - Tests for standard div attributes (id, aria-label, role)
+  - Tests for composition (Card with Header, Content, Footer)
+  - Tests for Header containing Title and Description
+- Updated packages/ui/src/index.ts to export:
+  - Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter
+  - All corresponding Props types
+
+Acceptance criteria verified:
+- Renders with proper shadow/radius (shadow-card, rounded-card classes)
+- Subcomponents compose correctly (verified in composition tests)
+- Unit tests pass: 96 tests total (21 card + 11 badge + 16 checkbox + 16 select + 11 input + 13 button + 6 utils + 2 sample)
+- npm run typecheck passes (2 successful tasks)
+- npm run test passes
+
+Next up: PRD-15 (Dialog), PRD-16 (Slider), PRD-17 (MultiSelect)
+Or: PRD-23 (Data Types) to start the Data Package track
