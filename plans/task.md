@@ -763,11 +763,11 @@ Create navigation header and footer.
 
 #### Deliverables
 
-- [ ] `apps/web/src/components/astro/Header.astro`
+- [x] `apps/web/src/components/astro/Header.astro`
   - Logo/brand
   - Nav links: Home, About, Insights, Companies
   - Mobile responsive
-- [ ] `apps/web/src/components/astro/Footer.astro`
+- [x] `apps/web/src/components/astro/Footer.astro`
   - Flower theme styling
   - Minimal content
 

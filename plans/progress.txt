@@ -934,3 +934,40 @@ Acceptance criteria verified:
 
 Next up: PRD-29 (Header & Footer) - depends on PRD-28 ✓
 
+=== PRD-29: Header & Footer ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/components/astro/Header.astro with:
+  - Logo/brand "Bloom" with flower SVG icon
+  - Nav links: Home, About, Insights, Companies
+  - Active state styling for current page (text-primary)
+  - Desktop navigation (hidden on mobile, visible md:flex)
+  - Mobile menu button with hamburger icon
+  - Mobile navigation (toggleable via JS)
+  - JavaScript for mobile menu toggle with astro:after-swap listener for View Transitions
+- Created apps/web/src/components/astro/Footer.astro with:
+  - Flower-themed logo matching header
+  - Decorative flower elements (SVG petals)
+  - Tagline and copyright with dynamic year
+  - Responsive layout (flex-col on mobile, sm:flex-row on larger screens)
+- Updated apps/web/src/layouts/BaseLayout.astro to include:
+  - Header component import and rendering
+  - Footer component import and rendering
+  - Body with flex layout (flex-col min-h-screen) for sticky footer
+  - Main element with flex-1 for content area
+- Updated apps/web/src/pages/index.astro to use div instead of main (since main is now in layout)
+
+Acceptance criteria verified:
+- Header displays on all pages (included in BaseLayout)
+- Nav links work (Home, About, Insights, Companies)
+- Footer displays on all pages (included in BaseLayout)
+- Mobile responsive (hamburger menu, stacked layout on mobile)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-30 (Landing Page) - depends on PRD-29 ✓
+Or: PRD-31 (About Page) - depends on PRD-29 ✓
+Or: PRD-32 (Insights Page Shell) - depends on PRD-29 ✓
+

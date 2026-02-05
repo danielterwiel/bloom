@@ -1,0 +1,130 @@
+---
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/insights", label: "Insights" },
+  { href: "/companies", label: "Companies" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-border bg-surface">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between p-content">
+    <!-- Logo/Brand -->
+    <a href="/" class="flex items-center gap-2 text-xl font-semibold text-primary">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="h-7 w-7"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 2C12 2 9 5.5 9 8.5C9 10.5 10.5 12 12 12C13.5 12 15 10.5 15 8.5C15 5.5 12 2 12 2Z"
+        ></path>
+        <path
+          d="M7.5 6C7.5 6 4 8 4 11C4 13 5.5 14.5 7.5 14.5C8.5 14.5 9.5 14 10 13C9 12 8.5 10.5 8.5 9C8.5 7.5 9 6.5 9.5 5.5C8.5 5.5 7.5 6 7.5 6Z"
+        ></path>
+        <path
+          d="M16.5 6C16.5 6 20 8 20 11C20 13 18.5 14.5 16.5 14.5C15.5 14.5 14.5 14 14 13C15 12 15.5 10.5 15.5 9C15.5 7.5 15 6.5 14.5 5.5C15.5 5.5 16.5 6 16.5 6Z"
+        ></path>
+        <path d="M12 13C12 13 12 22 12 22"></path>
+        <path
+          d="M12 14C12 14 8 16 8 19C8 21 9.5 22 12 22C14.5 22 16 21 16 19C16 16 12 14 12 14Z"
+        ></path>
+      </svg>
+      <span class="font-heading">Bloom</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <ul class="hidden items-center gap-6 md:flex">
+      {
+        navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                "text-sm font-medium transition-colors hover:text-primary",
+                currentPath === href || (href !== "/" && currentPath.startsWith(href))
+                  ? "text-primary"
+                  : "text-foreground-muted",
+              ]}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Mobile Menu Button -->
+    <button
+      type="button"
+      class="flex items-center justify-center rounded-md p-2 text-foreground-muted hover:bg-muted hover:text-foreground md:hidden"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      id="mobile-menu-button"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="h-6 w-6"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div id="mobile-menu" class="hidden border-t border-border md:hidden">
+    <ul class="flex flex-col gap-1 p-4">
+      {
+        navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                "block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted",
+                currentPath === href || (href !== "/" && currentPath.startsWith(href))
+                  ? "bg-muted text-primary"
+                  : "text-foreground-muted hover:text-foreground",
+              ]}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</header>
+
+<script>
+  function setupMobileMenu() {
+    const button = document.getElementById("mobile-menu-button");
+    const menu = document.getElementById("mobile-menu");
+
+    if (!button || !menu) return;
+
+    button.addEventListener("click", () => {
+      const isExpanded = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", String(!isExpanded));
+      menu.classList.toggle("hidden");
+    });
+  }
+
+  // Run on initial load
+  setupMobileMenu();
+
+  // Re-run after view transitions
+  document.addEventListener("astro:after-swap", setupMobileMenu);
+</script>
