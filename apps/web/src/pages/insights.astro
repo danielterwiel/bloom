@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { CategoryDistributionChart } from "../components/react/CategoryDistributionChart";
 ---
 
 <BaseLayout title="Industry Insights | Bloom" description="Explore visual analytics and data-driven insights about the global flower industry, including category distributions, business trends, and geographic patterns.">
@@ -35,21 +36,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section class="bg-surface py-section">
     <div class="mx-auto max-w-6xl px-content">
       <div class="grid gap-8 md:grid-cols-2">
-        <!-- Category Distribution Chart Placeholder -->
+        <!-- Category Distribution Chart -->
         <div class="rounded-card bg-background p-card shadow-card" id="category-chart">
           <h2 class="font-heading text-xl font-semibold text-foreground">Category Distribution</h2>
           <p class="mt-2 text-sm text-foreground-muted">Breakdown of companies by business category</p>
-          <div class="mt-6 flex h-64 items-center justify-center rounded-lg bg-muted/50">
-            <div class="text-center text-foreground-muted">
-              <svg class="mx-auto h-12 w-12 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 2a10 10 0 0110 10"/>
-                <path d="M12 12V2"/>
-                <path d="M12 12l7.07 7.07"/>
-              </svg>
-              <p class="mt-2 text-sm">Donut Chart</p>
-              <p class="text-xs opacity-75">Loading...</p>
-            </div>
+          <div class="mt-6">
+            <CategoryDistributionChart client:visible />
           </div>
         </div>
 

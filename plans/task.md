@@ -865,15 +865,15 @@ Add category distribution donut chart to insights.
 
 #### Deliverables
 
-- [ ] React island component wrapping DonutChart
-- [ ] Data aggregation for categories
-- [ ] `client:visible` directive
+- [x] React island component wrapping DonutChart
+- [x] Data aggregation for categories
+- [x] `client:visible` directive
 
 #### Acceptance Criteria
 
-1. Chart renders when scrolled into view
-2. Shows correct category distribution
-3. Uses theme colors
+1. [x] Chart renders when scrolled into view
+2. [x] Shows correct category distribution
+3. [x] Uses theme colors
 
 ---
 

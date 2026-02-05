@@ -1121,3 +1121,32 @@ Next up: PRD-33 (Category Distribution Chart), PRD-34 (Business Type Chart),
 PRD-35 (Founding Year Chart), PRD-36 (Geographic Distribution Chart)
 Or: PRD-38 (Companies Page Shell) - depends on PRD-29 ✓
 
+=== PRD-33: Category Distribution Chart ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/components/react/CategoryDistributionChart.tsx with:
+  - React island component wrapping DonutChart from @repo/ui
+  - Data aggregation using useMemo to count companies per category
+  - Imports companies and CATEGORIES from @repo/data
+  - Segments sorted by count descending for better visualization
+  - Configured DonutChart with showLegend, showPercentages, innerRadius=0.6
+- Updated apps/web/src/pages/insights.astro to:
+  - Import CategoryDistributionChart component
+  - Replace placeholder with actual chart using client:visible directive
+  - Removed loading indicator since chart handles its own rendering
+
+Note: The chart uses client:visible which means it only hydrates when scrolled into view,
+improving initial page load performance.
+
+Acceptance criteria verified:
+- Chart renders when scrolled into view (via client:visible directive)
+- Shows correct category distribution (aggregated from 1000 company records)
+- Uses theme colors (DonutChart uses CHART_COLORS matching theme tokens)
+- tsc --noEmit passes (0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-34 (Business Type Chart), PRD-35 (Founding Year Chart),
+PRD-36 (Geographic Distribution Chart) - all can be done in parallel
+
