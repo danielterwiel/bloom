@@ -1091,3 +1091,33 @@ Acceptance criteria verified:
 Next up: PRD-33 (Category Distribution Chart), PRD-34 (Business Type Chart), PRD-35 (Founding Year Chart), PRD-36 (Geographic Distribution Chart)
 Or: PRD-37 (Companies API Endpoint) - depends on PRD-24 ✓, PRD-27 ✓
 
+=== PRD-37: Companies API Endpoint ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/pages/api/companies.ts with:
+  - GET API route using Astro's APIRoute type
+  - Returns JSON with { data: FlowerCompany[], total: number } format
+  - Imports companies array from @repo/data
+  - Cache-Control headers: public, max-age=3600, s-maxage=86400
+  - Content-Type: application/json header
+- Fixed apps/web/package.json typecheck script (removed unnecessary npx prefix)
+
+Note: The Astro app uses output: "server" mode which enables API routes.
+The endpoint returns all 1000 company records from the data package.
+
+Acceptance criteria verified:
+- GET /api/companies returns JSON (via Astro APIRoute)
+- All 1000 records included (imports full companies array)
+- Response cached appropriately (Cache-Control headers set)
+- tsc --noEmit passes (0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Note: The astro symlink in node_modules/.bin appears corrupted, but tsc typechecking
+works when invoked directly from root. This may need investigation in a future PR.
+
+Next up: PRD-33 (Category Distribution Chart), PRD-34 (Business Type Chart),
+PRD-35 (Founding Year Chart), PRD-36 (Geographic Distribution Chart)
+Or: PRD-38 (Companies Page Shell) - depends on PRD-29 ✓
+

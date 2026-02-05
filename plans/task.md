@@ -955,15 +955,15 @@ Create API endpoint serving company data.
 
 #### Deliverables
 
-- [ ] `apps/web/src/pages/api/companies.ts`
-- [ ] Returns: `{ data: FlowerCompany[], total: number }`
-- [ ] Cache-Control headers
+- [x] `apps/web/src/pages/api/companies.ts`
+- [x] Returns: `{ data: FlowerCompany[], total: number }`
+- [x] Cache-Control headers
 
 #### Acceptance Criteria
 
-1. GET /api/companies returns JSON
-2. All 1000 records included
-3. Response cached appropriately
+1. [x] GET /api/companies returns JSON
+2. [x] All 1000 records included
+3. [x] Response cached appropriately
 
 ---
 
