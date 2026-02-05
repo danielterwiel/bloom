@@ -487,17 +487,17 @@ Create BarChart component.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/charts/bar-chart.tsx`
-- [ ] Uses theme colors (chart-1, chart-2, etc.)
-- [ ] Configurable data and labels
-- [ ] Export from index.ts
+- [x] `packages/ui/src/charts/bar-chart.tsx`
+- [x] Uses theme colors (chart-1, chart-2, etc.)
+- [x] Configurable data and labels
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 
-1. Renders bars correctly
-2. Uses theme colors
-3. Responsive
-4. Unit test: render with data
+1. [x] Renders bars correctly
+2. [x] Uses theme colors
+3. [x] Responsive
+4. [x] Unit test: render with data
 
 ---
 

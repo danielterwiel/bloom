@@ -54,3 +54,9 @@ export {
 
 // Charts
 export { BaseChart, type BaseChartProps } from "./charts/base-chart";
+export {
+  BarChart,
+  type BarChartProps,
+  type BarChartSeries,
+  type BarChartDataPoint,
+} from "./charts/bar-chart";

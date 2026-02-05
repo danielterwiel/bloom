@@ -729,3 +729,41 @@ Note: Chart Components Track B started. PRD-18 complete.
 Next up: PRD-19 (Bar Chart), PRD-20 (Line Chart), PRD-21 (Donut Chart)
 Or: PRD-27 (Astro App Initialization) to start Astro App Setup track
 
+=== PRD-19: Bar Chart ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/charts/bar-chart.tsx with:
+  - BarChart component for displaying categorical data
+  - BarChartProps interface with series, className, showLegend, title, barWidth
+  - BarChartSeries interface with name, data, and optional color
+  - BarChartDataPoint interface with label and value
+  - Custom barsPlugin for uPlot that draws bars with proper grouping for multiple series
+  - Uses theme colors (chart-1 through chart-5) defined as oklch values
+  - Responsive via BaseChart wrapper (uses ResizeObserver)
+  - Y-axis automatically starts at 0 for bar charts
+  - X-axis displays category labels
+  - Legend support (on by default)
+  - Empty state handling with "No data available" message
+- Created packages/ui/src/__tests__/charts/bar-chart.test.tsx with 32 tests:
+  - Component structure tests (displayName, rendering, className)
+  - Series data tests (single, multiple, empty, custom colors)
+  - Data points tests (label/value, numeric, empty)
+  - Configuration options tests (showLegend, title, barWidth)
+  - Theme colors tests (defaults, custom overrides)
+  - Interface tests (BarChartProps, BarChartSeries, BarChartDataPoint)
+  - Edge cases (single point, large datasets, zero/negative/decimal values, special chars)
+- Updated packages/ui/src/index.ts to export BarChart, BarChartProps, BarChartSeries, BarChartDataPoint
+
+Acceptance criteria verified:
+- Renders bars correctly (via custom barsPlugin drawing)
+- Uses theme colors (CHART_COLORS array with oklch values matching theme)
+- Responsive (inherits from BaseChart wrapper with ResizeObserver)
+- Unit tests pass: 358 tests total (251 ui + 107 data)
+- npm run typecheck passes (3 successful tasks)
+- npm run test passes
+
+Next up: PRD-20 (Line Chart), PRD-21 (Donut Chart)
+Or: PRD-27 (Astro App Initialization) to start Astro App Setup track
+
