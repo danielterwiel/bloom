@@ -315,3 +315,38 @@ Acceptance criteria verified:
 Next up: PRD-17 (MultiSelect) depends on PRD-11 ✓
 Or: PRD-12 (Checkbox), PRD-13 (Badge), PRD-14 (Card), PRD-15 (Dialog), PRD-16 (Slider)
 Or: PRD-23 (Data Types) to start the Data Package track
+
+=== PRD-12: Checkbox Component ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/components/checkbox.tsx with:
+  - Uses BaseUI Checkbox primitives internally (Root, Indicator)
+  - CheckboxProps interface with checked, defaultChecked, onCheckedChange, disabled, required, name, value, className, id, aria-label, aria-labelledby
+  - Styled with theme tokens (bg-background, border-border, bg-primary, text-primary-foreground)
+  - Custom CheckIcon SVG component for the checked indicator
+  - data-[checked] styling for checked state
+  - Focus ring styling with ring-primary
+  - forwardRef support for ref forwarding
+  - Keyboard accessibility via BaseUI (built-in Space key support)
+- Created packages/ui/src/__tests__/checkbox.test.tsx with 16 tests:
+  - Tests for displayName, basic rendering, checked, defaultChecked props
+  - Tests for onCheckedChange callback, disabled, required, name, value, className, id props
+  - Tests for accessibility props (aria-label, aria-labelledby)
+  - Tests for controlled vs uncontrolled usage
+  - Tests for form integration (name + value + required)
+- Updated packages/ui/src/index.ts to export Checkbox, CheckboxProps
+
+Note: BaseUI Checkbox provides built-in keyboard accessibility (Space to toggle) and ARIA attributes.
+
+Acceptance criteria verified:
+- Toggles on click (via BaseUI primitives)
+- Keyboard accessible (Space) - built-in from BaseUI
+- Visual checked/unchecked states (data-[checked] styling with bg-primary)
+- Unit tests pass: 64 tests total (16 checkbox + 16 select + 11 input + 13 button + 6 utils + 2 sample)
+- npm run typecheck passes (2 successful tasks)
+- npm run test passes
+
+Next up: PRD-13 (Badge), PRD-14 (Card), PRD-15 (Dialog), PRD-16 (Slider), PRD-17 (MultiSelect)
+Or: PRD-23 (Data Types) to start the Data Package track

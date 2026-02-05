@@ -316,10 +316,10 @@ Create Checkbox using BaseUI primitive.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/components/checkbox.tsx`
-- [ ] Uses BaseUI Checkbox internally
-- [ ] Styled with theme tokens
-- [ ] Export from index.ts
+- [x] `packages/ui/src/components/checkbox.tsx`
+- [x] Uses BaseUI Checkbox internally
+- [x] Styled with theme tokens
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 
