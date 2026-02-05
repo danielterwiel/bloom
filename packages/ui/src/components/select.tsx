@@ -101,8 +101,6 @@ function Select({
         className={cn(
           // Base styles matching Input component
           "flex h-10 w-full items-center justify-between rounded-md border bg-background px-3 py-2 text-sm transition-colors",
-          // Placeholder color
-          "data-[placeholder]:text-foreground-muted",
           // Focus states
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary",
           // Disabled state
@@ -112,31 +110,35 @@ function Select({
           className,
         )}
       >
-        <BaseSelect.Value placeholder={placeholder} />
+        {value ? (
+          <BaseSelect.Value />
+        ) : (
+          <span className="text-foreground-muted">{placeholder}</span>
+        )}
         <BaseSelect.Icon className="ml-2 flex-shrink-0 text-foreground-muted">
           <ChevronIcon />
         </BaseSelect.Icon>
       </BaseSelect.Trigger>
 
       <BaseSelect.Portal>
-        <BaseSelect.Positioner className="z-50">
+        <BaseSelect.Positioner sideOffset={4} className="z-50">
           <BaseSelect.Popup
             className={cn(
-              "min-w-[var(--anchor-width)] overflow-hidden rounded-md border border-border bg-surface shadow-elevated",
+              "min-w-[var(--anchor-width)] max-h-60 overflow-hidden rounded-md border border-border bg-surface shadow-elevated",
               // Animation
               "origin-[var(--transform-origin)] transition-[transform,opacity] duration-150",
               "data-[ending-style]:scale-95 data-[ending-style]:opacity-0",
               "data-[starting-style]:scale-95 data-[starting-style]:opacity-0",
             )}
           >
-            <BaseSelect.List className="p-1">
+            <BaseSelect.List className="max-h-60 overflow-y-auto p-1">
               {options.map((option) => (
                 <BaseSelect.Item
                   key={option.value}
                   value={option.value}
                   disabled={option.disabled}
                   className={cn(
-                    "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 pl-8 text-sm outline-none",
+                    "flex cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none",
                     // Highlighted state (keyboard navigation or hover)
                     "data-[highlighted]:bg-muted",
                     // Selected state
@@ -145,9 +147,11 @@ function Select({
                     "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
                   )}
                 >
-                  <BaseSelect.ItemIndicator className="absolute left-2 flex h-4 w-4 items-center justify-center">
-                    <CheckIcon />
-                  </BaseSelect.ItemIndicator>
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center">
+                    <BaseSelect.ItemIndicator>
+                      <CheckIcon />
+                    </BaseSelect.ItemIndicator>
+                  </span>
                   <BaseSelect.ItemText>{option.label}</BaseSelect.ItemText>
                 </BaseSelect.Item>
               ))}

@@ -111,15 +111,15 @@ export function CompanyExplorer() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6">
       <FilterPanel
         filters={filters}
         onFiltersChange={setFilters}
         resultsCount={filteredData.length}
         totalCount={state.total}
       />
-      <div className="rounded-card bg-background shadow-card overflow-hidden">
-        <div style={{ height: "calc(100vh - 400px)", minHeight: "400px" }}>
+      <div>
+        <div style={{ height: "calc(100vh - 340px)", minHeight: "500px" }}>
           <VirtualList items={filteredData} />
         </div>
       </div>

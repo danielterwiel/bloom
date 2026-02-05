@@ -1,3 +1,4 @@
+/** @jsxImportSource react */
 import { useMemo } from "react";
 import { BarChart, type BarChartSeries } from "@repo/ui";
 import { companies, BUSINESS_TYPES } from "@repo/data";

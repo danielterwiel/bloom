@@ -103,7 +103,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                   getAriaLabel={getAriaLabel}
                   getAriaValueText={getAriaValueText}
                   className={cn(
-                    "block h-5 w-5 rounded-full border-2 border-primary bg-background shadow-md transition-colors",
+                    "block h-5 w-5 rounded-full border-2 border-primary bg-muted shadow-md transition-colors",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary",
                     "disabled:pointer-events-none",
                     "data-[dragging]:cursor-grabbing cursor-grab",
@@ -115,7 +115,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                   getAriaLabel={getAriaLabel}
                   getAriaValueText={getAriaValueText}
                   className={cn(
-                    "block h-5 w-5 rounded-full border-2 border-primary bg-background shadow-md transition-colors",
+                    "block h-5 w-5 rounded-full border-2 border-primary bg-muted shadow-md transition-colors",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary",
                     "disabled:pointer-events-none",
                     "data-[dragging]:cursor-grabbing cursor-grab",
@@ -128,7 +128,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
                 getAriaLabel={getAriaLabel}
                 getAriaValueText={getAriaValueText}
                 className={cn(
-                  "block h-5 w-5 rounded-full border-2 border-primary bg-background shadow-md transition-colors",
+                  "block h-5 w-5 rounded-full border-2 border-primary bg-muted shadow-md transition-colors",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary",
                   "disabled:pointer-events-none",
                   "data-[dragging]:cursor-grabbing cursor-grab",

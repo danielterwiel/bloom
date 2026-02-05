@@ -65,8 +65,10 @@ export function DonutChart({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Get container dimensions
+    // Get container dimensions — skip if too small for meaningful rendering
     const rect = container.getBoundingClientRect();
+    if (rect.width < 20 || rect.height < 20) return;
+
     const dpr = window.devicePixelRatio || 1;
 
     // Set canvas size with device pixel ratio for sharp rendering
@@ -172,7 +174,7 @@ export function DonutChart({
         </div>
       )}
       <div className="flex flex-1 items-center gap-4">
-        <div ref={containerRef} className="relative flex-1 min-h-[200px]">
+        <div ref={containerRef} className="relative flex-1 h-full">
           <canvas
             ref={canvasRef}
             className="absolute inset-0"

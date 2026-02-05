@@ -115,70 +115,35 @@ export function FilterPanel({
   }, []);
 
   return (
-    <div className={`rounded-card bg-background p-card shadow-card ${className}`}>
-      {/* Header with results count and clear button */}
-      <div className="flex items-center justify-between border-b border-border pb-4">
-        <div className="text-sm text-foreground-muted">
-          Showing{" "}
-          <span className="font-medium text-foreground">{resultsCount.toLocaleString()}</span>
-          {resultsCount !== totalCount && (
-            <>
-              {" "}
-              of <span className="font-medium text-foreground">{totalCount.toLocaleString()}</span>
-            </>
-          )}{" "}
-          companies
-        </div>
-
-        {hasActiveFilters && (
-          <button
-            onClick={handleClearAll}
-            className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-foreground-muted transition-colors hover:bg-muted hover:text-foreground"
+    <div className={`rounded-lg border border-border bg-background p-5 ${className}`}>
+      {/* Search input — full width */}
+      <div className="relative">
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <svg
+            className="h-4 w-4 text-foreground-muted"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
           >
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            Clear all
-          </button>
-        )}
+            <circle cx="11" cy="11" r="8" />
+            <path strokeLinecap="round" d="m21 21-4.35-4.35" />
+          </svg>
+        </div>
+        <Input
+          type="text"
+          placeholder="Search companies by name or description..."
+          value={searchText}
+          onChange={handleSearchChange}
+          className="w-full pl-10"
+          data-slot="text-search"
+          aria-label="Search companies by name or description"
+        />
       </div>
 
-      {/* Filter controls grid - placeholders for filter components (PRDs 43-45) */}
-      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {/* Text search filter (PRD-43) */}
-        <div className="relative sm:col-span-2 lg:col-span-3 xl:col-span-4">
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <svg
-              className="h-4 w-4 text-foreground-muted"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              aria-hidden="true"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path strokeLinecap="round" d="m21 21-4.35-4.35" />
-            </svg>
-          </div>
-          <Input
-            type="text"
-            placeholder="Search companies by name or description..."
-            value={searchText}
-            onChange={handleSearchChange}
-            className="pl-10"
-            data-slot="text-search"
-            aria-label="Search companies by name or description"
-          />
-        </div>
-
-        {/* Multi-select filters (PRD-44) */}
+      {/* Filter controls grid */}
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <MultiSelect
           options={categoryOptions}
           placeholder={`Category${filters.categories?.length ? ` (${filters.categories.length})` : ""}`}
@@ -197,7 +162,7 @@ export function FilterPanel({
         />
         <MultiSelect
           options={certificationOptions}
-          placeholder={`Certifications${filters.certifications?.length ? ` (${filters.certifications.length})` : ""}`}
+          placeholder={`Certs${filters.certifications?.length ? ` (${filters.certifications.length})` : ""}`}
           value={filters.certifications ?? []}
           onValueChange={(values) =>
             onFiltersChange({ ...filters, certifications: values.length > 0 ? values : undefined })
@@ -212,7 +177,6 @@ export function FilterPanel({
           }
         />
 
-        {/* Single-select filters (PRD-45) */}
         <Select
           options={employeeOptions}
           placeholder="Employees"
@@ -238,11 +202,11 @@ export function FilterPanel({
           }
         />
 
-        {/* Founded year range slider (PRD-45) */}
+        {/* Founded year range slider */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-foreground-muted">Founded Year</span>
-            <span className="font-medium text-foreground">
+            <span className="text-foreground-muted">Founded</span>
+            <span className="font-medium text-foreground tabular-nums">
               {filters.foundedMin ?? FOUNDED_MIN}–{filters.foundedMax ?? FOUNDED_MAX}
             </span>
           </div>
@@ -266,6 +230,33 @@ export function FilterPanel({
             }
           />
         </div>
+      </div>
+
+      {/* Results count + clear */}
+      <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
+        <p className="text-sm text-foreground-muted">
+          <span className="font-semibold text-foreground">{resultsCount.toLocaleString()}</span>
+          {resultsCount !== totalCount && <> of {totalCount.toLocaleString()}</>} results
+        </p>
+
+        {hasActiveFilters && (
+          <button
+            onClick={handleClearAll}
+            className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium text-foreground-muted transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <svg
+              className="h-3.5 w-3.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            Clear all
+          </button>
+        )}
       </div>
     </div>
   );

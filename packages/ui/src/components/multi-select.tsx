@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Select as BaseSelect } from "@base-ui/react/select";
+import { Popover } from "@base-ui/react/popover";
 import { cn } from "../lib/utils";
 
 export interface MultiSelectOption {
@@ -86,6 +86,23 @@ const XIcon = () => (
   </svg>
 );
 
+const SearchIcon = () => (
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    aria-hidden="true"
+  >
+    <circle cx="11" cy="11" r="8" />
+    <path strokeLinecap="round" d="m21 21-4.35-4.35" />
+  </svg>
+);
+
+const MAX_VISIBLE_BADGES = 2;
+
 function MultiSelect({
   options,
   placeholder = "Select options",
@@ -93,54 +110,59 @@ function MultiSelect({
   defaultValue,
   onValueChange,
   disabled,
-  required,
-  name,
   className,
 }: MultiSelectProps) {
-  // Build items record for BaseUI to display labels properly
-  const items = React.useMemo(() => {
-    const record: Record<string, React.ReactNode> = {};
-    for (const opt of options) {
-      record[opt.value] = opt.label;
-    }
-    return record;
-  }, [options]);
+  const [open, setOpen] = React.useState(false);
+  const [search, setSearch] = React.useState("");
+  const searchRef = React.useRef<HTMLInputElement>(null);
 
-  // Track selected values for badge display
   const [internalValue, setInternalValue] = React.useState<string[]>(defaultValue ?? []);
   const selectedValues = value ?? internalValue;
 
-  const handleValueChange = React.useCallback(
-    (newValue: string[] | null) => {
-      const values = newValue ?? [];
-      if (value === undefined) {
-        setInternalValue(values);
-      }
-      onValueChange?.(values);
+  const updateValues = React.useCallback(
+    (newValues: string[]) => {
+      if (value === undefined) setInternalValue(newValues);
+      onValueChange?.(newValues);
     },
     [value, onValueChange],
   );
 
-  const handleRemoveValue = React.useCallback(
-    (valueToRemove: string, e: React.MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const newValues = selectedValues.filter((v) => v !== valueToRemove);
-      handleValueChange(newValues);
+  const handleToggle = React.useCallback(
+    (val: string) => {
+      const newValues = selectedValues.includes(val)
+        ? selectedValues.filter((v) => v !== val)
+        : [...selectedValues, val];
+      updateValues(newValues);
     },
-    [selectedValues, handleValueChange],
+    [selectedValues, updateValues],
   );
 
   const handleClearAll = React.useCallback(
     (e: React.MouseEvent) => {
-      e.preventDefault();
       e.stopPropagation();
-      handleValueChange([]);
+      updateValues([]);
     },
-    [handleValueChange],
+    [updateValues],
   );
 
-  // Get labels for selected values
+  const filteredOptions = React.useMemo(() => {
+    if (!search.trim()) return options;
+    const q = search.toLowerCase();
+    return options.filter((o) => o.label.toLowerCase().includes(q));
+  }, [options, search]);
+
+  // Clear search when popover closes
+  React.useEffect(() => {
+    if (!open) setSearch("");
+  }, [open]);
+
+  // Focus search input when popover opens
+  React.useEffect(() => {
+    if (open) {
+      requestAnimationFrame(() => searchRef.current?.focus());
+    }
+  }, [open]);
+
   const selectedLabels = React.useMemo(() => {
     return selectedValues.map((v) => {
       const opt = options.find((o) => o.value === v);
@@ -149,106 +171,105 @@ function MultiSelect({
   }, [selectedValues, options]);
 
   return (
-    <BaseSelect.Root
-      value={value}
-      defaultValue={defaultValue}
-      onValueChange={handleValueChange}
-      disabled={disabled}
-      required={required}
-      name={name}
-      items={items}
-      multiple
-    >
-      <BaseSelect.Trigger
+    <Popover.Root open={disabled ? false : open} onOpenChange={disabled ? undefined : setOpen}>
+      <Popover.Trigger
+        render={<div />}
         className={cn(
-          // Base styles matching Input component
-          "flex min-h-10 w-full items-center gap-1 rounded-md border bg-background px-3 py-2 text-sm transition-colors",
-          // Focus states
+          "flex min-h-10 w-full cursor-pointer items-center gap-1 rounded-md border border-border bg-background px-3 py-2 text-sm transition-colors",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary",
-          // Disabled state
-          "disabled:cursor-not-allowed disabled:opacity-50",
-          // Default border
-          "border-border",
+          disabled && "cursor-not-allowed opacity-50",
           className,
         )}
+        tabIndex={disabled ? -1 : 0}
       >
-        <div className="flex flex-1 flex-wrap items-center gap-1">
+        <div className="flex flex-1 flex-wrap items-center gap-1 overflow-hidden">
           {selectedValues.length === 0 ? (
             <span className="text-foreground-muted">{placeholder}</span>
-          ) : (
-            selectedLabels.map(({ value: v, label }) => (
+          ) : selectedValues.length <= MAX_VISIBLE_BADGES ? (
+            selectedLabels.slice(0, MAX_VISIBLE_BADGES).map(({ value: v, label }) => (
               <span
                 key={v}
-                className="inline-flex items-center gap-1 rounded-md bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground"
+                className="inline-flex items-center rounded-md bg-muted px-2 py-0.5 text-xs font-medium text-foreground"
               >
                 {label}
-                <button
-                  type="button"
-                  onClick={(e) => handleRemoveValue(v, e)}
-                  className="rounded-sm hover:bg-primary-hover focus:outline-none focus:ring-1 focus:ring-primary-foreground"
-                  aria-label={`Remove ${label}`}
-                >
-                  <XIcon />
-                </button>
               </span>
             ))
+          ) : (
+            <span className="text-foreground-muted">{selectedValues.length} selected</span>
           )}
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex shrink-0 items-center gap-1">
           {selectedValues.length > 0 && (
             <button
               type="button"
               onClick={handleClearAll}
-              className="rounded-sm p-0.5 text-foreground-muted hover:text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              className="rounded-sm p-0.5 text-foreground-muted hover:text-foreground focus:outline-none"
               aria-label="Clear all selections"
             >
               <XIcon />
             </button>
           )}
-          <BaseSelect.Icon className="flex-shrink-0 text-foreground-muted">
+          <span className="text-foreground-muted">
             <ChevronIcon />
-          </BaseSelect.Icon>
+          </span>
         </div>
-      </BaseSelect.Trigger>
+      </Popover.Trigger>
 
-      <BaseSelect.Portal>
-        <BaseSelect.Positioner className="z-50">
-          <BaseSelect.Popup
+      <Popover.Portal>
+        <Popover.Positioner sideOffset={4} className="z-50">
+          <Popover.Popup
             className={cn(
-              "min-w-[var(--anchor-width)] overflow-hidden rounded-md border border-border bg-surface shadow-elevated",
-              // Animation
+              "w-[var(--anchor-width)] rounded-md border border-border bg-surface shadow-elevated",
               "origin-[var(--transform-origin)] transition-[transform,opacity] duration-150",
               "data-[ending-style]:scale-95 data-[ending-style]:opacity-0",
               "data-[starting-style]:scale-95 data-[starting-style]:opacity-0",
             )}
           >
-            <BaseSelect.List className="p-1">
-              {options.map((option) => (
-                <BaseSelect.Item
-                  key={option.value}
-                  value={option.value}
-                  disabled={option.disabled}
-                  className={cn(
-                    "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 pl-8 text-sm outline-none",
-                    // Highlighted state (keyboard navigation or hover)
-                    "data-[highlighted]:bg-muted",
-                    // Selected state
-                    "data-[selected]:font-medium",
-                    // Disabled state
-                    "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-                  )}
-                >
-                  <BaseSelect.ItemIndicator className="absolute left-2 flex h-4 w-4 items-center justify-center">
-                    <CheckIcon />
-                  </BaseSelect.ItemIndicator>
-                  <BaseSelect.ItemText>{option.label}</BaseSelect.ItemText>
-                </BaseSelect.Item>
-              ))}
-            </BaseSelect.List>
-          </BaseSelect.Popup>
-        </BaseSelect.Positioner>
-      </BaseSelect.Portal>
-    </BaseSelect.Root>
+            {/* Search input */}
+            <div className="flex items-center gap-2 border-b border-border px-3 py-2">
+              <span className="text-foreground-muted">
+                <SearchIcon />
+              </span>
+              <input
+                ref={searchRef}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search..."
+                className="w-full bg-transparent text-sm outline-none placeholder:text-foreground-muted"
+              />
+            </div>
+            {/* Options list */}
+            <div className="max-h-48 overflow-y-auto p-1">
+              {filteredOptions.length === 0 ? (
+                <div className="px-2 py-4 text-center text-sm text-foreground-muted">
+                  No results found
+                </div>
+              ) : (
+                filteredOptions.map((option) => (
+                  <button
+                    key={option.value}
+                    type="button"
+                    disabled={option.disabled}
+                    onClick={() => handleToggle(option.value)}
+                    className={cn(
+                      "flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-left text-sm outline-none",
+                      "hover:bg-muted focus-visible:bg-muted",
+                      "disabled:pointer-events-none disabled:opacity-50",
+                      selectedValues.includes(option.value) && "font-medium",
+                    )}
+                  >
+                    <span className="flex h-4 w-4 shrink-0 items-center justify-center text-primary">
+                      {selectedValues.includes(option.value) && <CheckIcon />}
+                    </span>
+                    {option.label}
+                  </button>
+                ))
+              )}
+            </div>
+          </Popover.Popup>
+        </Popover.Positioner>
+      </Popover.Portal>
+    </Popover.Root>
   );
 }
 

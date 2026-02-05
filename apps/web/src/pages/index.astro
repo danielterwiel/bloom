@@ -1,5 +1,32 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { companies, COUNTRIES } from "@repo/data";
+
+// Server-side data — resolved at render time, zero JS shipped
+const featuredCompanies = companies.slice(0, 6);
+
+// Aggregate country stats for the "Global Reach" section
+const countryStats = COUNTRIES.map((country) => {
+  const count = companies.filter((c) => c.country === country).length;
+  return { country, count };
+})
+  .sort((a, b) => b.count - a.count)
+  .slice(0, 8);
+
+const totalCountries = new Set(companies.map((c) => c.country)).size;
+const totalCategories = new Set(companies.map((c) => c.category)).size;
+
+// Gallery images using picsum.photos (same pattern as company imageUrl)
+const galleryImages = [
+  { seed: "bloom-gallery-1", w: 600, h: 400, alt: "Vibrant flower arrangements in a boutique florist shop" },
+  { seed: "bloom-gallery-2", w: 400, h: 600, alt: "Rows of tulips in a commercial greenhouse" },
+  { seed: "bloom-gallery-3", w: 600, h: 400, alt: "Fresh cut roses ready for wholesale distribution" },
+  { seed: "bloom-gallery-4", w: 400, h: 500, alt: "Colorful mixed bouquet being prepared for delivery" },
+  { seed: "bloom-gallery-5", w: 600, h: 400, alt: "Aerial view of flower fields in bloom" },
+  { seed: "bloom-gallery-6", w: 400, h: 600, alt: "Wedding floral centerpiece arrangement" },
+  { seed: "bloom-gallery-7", w: 600, h: 400, alt: "Flower market stalls with diverse selections" },
+  { seed: "bloom-gallery-8", w: 400, h: 500, alt: "Orchid nursery with exotic varieties" },
+];
 ---
 
 <BaseLayout title="Flower Industry Directory | Bloom" description="Discover and explore the global flower industry. Browse 1000+ companies, from florists to wholesalers, nurseries to exporters.">
@@ -177,6 +204,260 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <svg class="ml-1 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
           </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-section">
+    <div class="mx-auto max-w-6xl px-content">
+      <h2 class="text-center font-heading text-3xl font-semibold text-foreground sm:text-4xl">
+        How It Works
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-foreground-muted">
+        Find the right flower industry partner in three simple steps.
+      </p>
+
+      <div class="mt-14 grid gap-12 sm:grid-cols-3">
+        <!-- Step 1 -->
+        <div class="relative text-center">
+          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary text-xl font-bold text-primary-foreground">
+            1
+          </div>
+          <h3 class="mt-5 font-heading text-lg font-semibold text-foreground">Search & Filter</h3>
+          <p class="mt-2 text-sm text-foreground-muted">
+            Browse by category, country, specialty, or business type. Our filters narrow 1,000+ companies to exactly what you need.
+          </p>
+          <!-- Connector line (hidden on mobile) -->
+          <div class="absolute right-0 top-7 hidden h-px w-[calc(50%-2rem)] bg-border sm:block" aria-hidden="true"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative text-center">
+          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-secondary text-xl font-bold text-primary-foreground">
+            2
+          </div>
+          <h3 class="mt-5 font-heading text-lg font-semibold text-foreground">Compare & Evaluate</h3>
+          <p class="mt-2 text-sm text-foreground-muted">
+            View detailed company profiles with certifications, specialties, revenue ranges, and employee counts side by side.
+          </p>
+          <div class="absolute left-0 top-7 hidden h-px w-[calc(50%-2rem)] bg-border sm:block" aria-hidden="true"></div>
+          <div class="absolute right-0 top-7 hidden h-px w-[calc(50%-2rem)] bg-border sm:block" aria-hidden="true"></div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative text-center">
+          <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-accent text-xl font-bold text-primary-foreground">
+            3
+          </div>
+          <h3 class="mt-5 font-heading text-lg font-semibold text-foreground">Connect & Grow</h3>
+          <p class="mt-2 text-sm text-foreground-muted">
+            Reach out directly to businesses that match your requirements and build lasting industry partnerships.
+          </p>
+          <div class="absolute left-0 top-7 hidden h-px w-[calc(50%-2rem)] bg-border sm:block" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Companies — server-rendered from @repo/data, zero JS -->
+  <section class="bg-surface py-section">
+    <div class="mx-auto max-w-6xl px-content">
+      <h2 class="text-center font-heading text-3xl font-semibold text-foreground sm:text-4xl">
+        Featured Companies
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-foreground-muted">
+        A sample from our directory of {companies.length.toLocaleString()} businesses worldwide.
+      </p>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {featuredCompanies.map((company) => (
+          <article class="group overflow-hidden rounded-card bg-background shadow-card transition-shadow hover:shadow-elevated">
+            <div class="aspect-[4/3] overflow-hidden bg-muted">
+              <img
+                src={company.imageUrl}
+                alt={`${company.name} — ${company.category}`}
+                width="400"
+                height="300"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <div class="p-card">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-heading text-base font-semibold text-foreground leading-tight">{company.name}</h3>
+                <span class="shrink-0 rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                  {company.category}
+                </span>
+              </div>
+              <p class="mt-2 flex items-center gap-1 text-sm text-foreground-muted">
+                <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                {company.headquarters}, {company.country}
+              </p>
+              <p class="mt-1.5 text-sm text-foreground-muted line-clamp-2">{company.description}</p>
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {company.specialty.slice(0, 3).map((spec) => (
+                  <span class="rounded-full bg-muted px-2 py-0.5 text-xs text-foreground-muted">{spec}</span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a
+          href="/companies"
+          class="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-base font-medium text-primary-foreground transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        >
+          Browse All {companies.length.toLocaleString()} Companies
+          <svg class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Reach -->
+  <section class="py-section">
+    <div class="mx-auto max-w-6xl px-content">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+          <h2 class="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
+            Global Reach, <span class="text-primary">Local Expertise</span>
+          </h2>
+          <p class="mt-4 text-foreground-muted">
+            Our directory spans {totalCountries} countries and {totalCategories} categories, connecting the world's flower
+            industry from Dutch auction houses to Colombian rose farms.
+          </p>
+          <div class="mt-8 space-y-3">
+            {countryStats.map((stat) => (
+              <div class="flex items-center justify-between rounded-lg bg-surface px-4 py-2.5">
+                <span class="text-sm font-medium text-foreground">{stat.country}</span>
+                <div class="flex items-center gap-3">
+                  <div class="h-2 w-24 overflow-hidden rounded-full bg-muted sm:w-32">
+                    <div
+                      class="h-full rounded-full bg-primary"
+                      style={`width: ${(stat.count / countryStats[0].count) * 100}%`}
+                    ></div>
+                  </div>
+                  <span class="w-10 text-right text-sm tabular-nums text-foreground-muted">{stat.count}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <a
+            href="/insights"
+            class="mt-8 inline-flex items-center text-sm font-medium text-primary hover:text-primary-hover"
+          >
+            Explore full industry insights
+            <svg class="ml-1 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Key numbers panel -->
+        <div class="rounded-card bg-surface p-8 shadow-card">
+          <h3 class="font-heading text-xl font-semibold text-foreground">Industry at a Glance</h3>
+          <div class="mt-6 grid grid-cols-2 gap-6">
+            <div class="rounded-lg bg-background p-4 text-center">
+              <div class="text-3xl font-bold text-primary">{companies.length.toLocaleString()}+</div>
+              <div class="mt-1 text-xs text-foreground-muted">Listed Companies</div>
+            </div>
+            <div class="rounded-lg bg-background p-4 text-center">
+              <div class="text-3xl font-bold text-secondary">{totalCountries}</div>
+              <div class="mt-1 text-xs text-foreground-muted">Countries</div>
+            </div>
+            <div class="rounded-lg bg-background p-4 text-center">
+              <div class="text-3xl font-bold text-accent">{totalCategories}</div>
+              <div class="mt-1 text-xs text-foreground-muted">Categories</div>
+            </div>
+            <div class="rounded-lg bg-background p-4 text-center">
+              <div class="text-3xl font-bold text-success">{new Set(companies.flatMap((c) => c.specialty)).size}+</div>
+              <div class="mt-1 text-xs text-foreground-muted">Specialties</div>
+            </div>
+          </div>
+          <div class="mt-6 rounded-lg border border-border bg-background p-4">
+            <div class="flex items-center gap-2 text-sm font-medium text-foreground">
+              <svg class="h-4 w-4 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <path d="M22 4L12 14.01l-3-3"/>
+              </svg>
+              Verified & Updated
+            </div>
+            <p class="mt-1 text-xs text-foreground-muted">
+              Company profiles include certifications, revenue data, and specialties reviewed for accuracy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Gallery -->
+  <section class="bg-surface py-section">
+    <div class="mx-auto max-w-6xl px-content">
+      <h2 class="text-center font-heading text-3xl font-semibold text-foreground sm:text-4xl">
+        The World of Flowers
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-foreground-muted">
+        From greenhouse to bouquet — a glimpse into the industry we serve.
+      </p>
+
+      <div class="mt-12 columns-2 gap-4 sm:columns-3 lg:columns-4">
+        {galleryImages.map((img) => (
+          <div class="mb-4 break-inside-avoid overflow-hidden rounded-card">
+            <img
+              src={`https://picsum.photos/seed/${img.seed}/${img.w}/${img.h}`}
+              alt={img.alt}
+              width={img.w}
+              height={img.h}
+              loading="lazy"
+              decoding="async"
+              class="w-full object-cover transition-transform duration-300 hover:scale-105"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="relative overflow-hidden py-section">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/3 blur-3xl"></div>
+    </div>
+
+    <div class="mx-auto max-w-4xl px-content text-center">
+      <h2 class="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
+        Ready to Find Your Next Partner?
+      </h2>
+      <p class="mt-4 text-lg text-foreground-muted">
+        Whether you're sourcing wholesale flowers, finding a local florist, or exploring global growers —
+        Bloom connects you with the right businesses.
+      </p>
+      <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <a
+          href="/companies"
+          class="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-base font-medium text-primary-foreground transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        >
+          Start Exploring
+          <svg class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+        <a
+          href="/about"
+          class="inline-flex h-12 items-center justify-center rounded-md border border-border bg-transparent px-8 text-base font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        >
+          Learn More About Bloom
         </a>
       </div>
     </div>

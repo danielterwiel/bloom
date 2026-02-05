@@ -1,3 +1,4 @@
+/** @jsxImportSource react */
 import { useMemo } from "react";
 import { DonutChart, type DonutChartSegment } from "@repo/ui";
 import { companies, CATEGORIES } from "@repo/data";

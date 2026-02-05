@@ -20,8 +20,8 @@ export interface VirtualListProps {
  */
 export function VirtualList({
   items,
-  estimatedRowHeight = 180,
-  gap = 16,
+  estimatedRowHeight = 120,
+  gap = 12,
   className,
 }: VirtualListProps) {
   const parentRef = React.useRef<HTMLDivElement>(null);

@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 import * as React from "react";
 import type { FlowerCompany } from "@repo/data";
-import { Card, CardHeader, CardTitle, CardContent, Badge } from "@repo/ui";
+import { Badge, cn } from "@repo/ui";
 
 export interface CompanyCardProps {
   company: FlowerCompany;
@@ -21,48 +21,68 @@ export const CompanyCard = React.memo<CompanyCardProps>(function CompanyCard({
     : company.country;
 
   return (
-    <Card className={className}>
-      <CardHeader>
-        <div className="flex items-start justify-between gap-2">
-          <CardTitle className="text-base">{company.name}</CardTitle>
-          <Badge variant="secondary" className="shrink-0">
-            {company.category}
-          </Badge>
+    <div
+      className={cn(
+        "rounded-lg border border-border bg-background p-4 transition-colors hover:border-primary/30",
+        className,
+      )}
+    >
+      {/* Top row: Name + Category */}
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="text-sm font-semibold leading-tight text-foreground">{company.name}</h3>
+        <Badge variant="default" className="shrink-0 p-1.5">
+          {company.category}
+        </Badge>
+      </div>
+
+      {/* Metadata row */}
+      <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-foreground-muted">
+        <span className="inline-flex items-center gap-1">
+          <svg
+            className="h-3 w-3"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+            />
+          </svg>
+          {location}
+        </span>
+        <span className="opacity-40">·</span>
+        <span>{company.employees} employees</span>
+        <span className="opacity-40">·</span>
+        <span>Est. {company.founded}</span>
+        <span className="opacity-40">·</span>
+        <span>{company.businessType}</span>
+      </div>
+
+      {/* Specialty badges */}
+      {company.specialty.length > 0 && (
+        <div className="mt-2.5 flex flex-wrap gap-1.5">
+          {company.specialty.slice(0, 4).map((spec) => (
+            <Badge key={spec} variant="outline" className="text-[11px] px-1 py-0.5">
+              {spec}
+            </Badge>
+          ))}
+          {company.specialty.length > 4 && (
+            <span className="inline-flex items-center text-[11px] text-foreground-muted">
+              +{company.specialty.length - 4} more
+            </span>
+          )}
         </div>
-      </CardHeader>
-      <CardContent className="space-y-3">
-        {/* Specialty badges */}
-        {company.specialty.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {company.specialty.slice(0, 3).map((spec) => (
-              <Badge key={spec} variant="outline" className="text-xs">
-                {spec}
-              </Badge>
-            ))}
-            {company.specialty.length > 3 && (
-              <Badge variant="outline" className="text-xs">
-                +{company.specialty.length - 3}
-              </Badge>
-            )}
-          </div>
-        )}
-
-        {/* Company details */}
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
-          <dt className="text-foreground-muted">Location</dt>
-          <dd className="truncate">{location}</dd>
-
-          <dt className="text-foreground-muted">Employees</dt>
-          <dd>{company.employees}</dd>
-
-          <dt className="text-foreground-muted">Founded</dt>
-          <dd>{company.founded}</dd>
-
-          <dt className="text-foreground-muted">Type</dt>
-          <dd>{company.businessType}</dd>
-        </dl>
-      </CardContent>
-    </Card>
+      )}
+    </div>
   );
 });
 

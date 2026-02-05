@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import uPlot from "uplot";
+import "uplot/dist/uPlot.min.css";
 
 export interface BaseChartProps {
   /** uPlot options configuration */
@@ -104,7 +105,7 @@ export function BaseChart({ options, data, className, onCreate, onDestroy }: Bas
     <div
       ref={containerRef}
       className={className}
-      style={{ width: "100%", height: "100%", minHeight: 200 }}
+      style={{ width: "100%", minHeight: 200, overflow: "hidden" }}
       data-testid="base-chart-container"
     />
   );
