@@ -14,3 +14,18 @@ export {
 
 // Company Data
 export { companies, generateCompanies } from "./companies";
+
+// Filter Utilities
+export {
+  filterByText,
+  filterByCategory,
+  filterBySpecialty,
+  filterByFoundedRange,
+  filterByEmployees,
+  filterByBusinessType,
+  filterByRevenue,
+  filterByCountry,
+  filterByCertifications,
+  applyAllFilters,
+  type CompanyFilters,
+} from "./filters";

@@ -630,3 +630,39 @@ Acceptance criteria verified:
 Next up: PRD-25 (Filter Utilities) - depends on PRD-23 ✓
 Or: PRD-18 (Base Chart Wrapper) - depends on PRD-8 ✓
 Or: PRD-27 (Astro App Initialization) - depends on PRD-6 ✓, PRD-8 ✓
+
+=== PRD-25: Filter Utilities ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/data/src/filters.ts with 10 filter functions:
+  - filterByText(companies, query): Case-insensitive partial match on name and description
+  - filterByCategory(companies, categories): Filter by category (OR logic within)
+  - filterBySpecialty(companies, specialties): Filter by specialty array (OR logic within)
+  - filterByFoundedRange(companies, min, max): Filter by founded year range (inclusive)
+  - filterByEmployees(companies, ranges): Filter by employee range (OR logic within)
+  - filterByBusinessType(companies, types): Filter by business type (OR logic within)
+  - filterByRevenue(companies, ranges): Filter by revenue range (OR logic within)
+  - filterByCountry(companies, countries): Filter by country (OR logic within)
+  - filterByCertifications(companies, certs): Filter by certifications array (OR logic within)
+  - applyAllFilters(companies, filters): Apply all filters with AND logic between filters
+- Created CompanyFilters interface for type-safe filter application
+- Created packages/data/src/__tests__/filters.test.ts with 42 comprehensive tests:
+  - Tests for each filter function (empty input, single value, multiple values)
+  - Tests for edge cases (no matches, all matches)
+  - Tests for applyAllFilters combining multiple filters
+  - Tests for AND logic between filters and OR logic within filters
+- Updated packages/data/src/index.ts to export all filter functions and CompanyFilters type
+
+Acceptance criteria verified:
+- Each filter function works correctly (42 tests pass)
+- Text search matches name and description (case-insensitive partial match)
+- Multi-value filters use OR logic within, AND between (verified in tests)
+- Unit tests pass: 304 tests total (107 data + 197 ui)
+- npm run typecheck passes (3 successful tasks)
+- npm run test passes
+
+Next up: PRD-26 (Data Package Exports) - depends on PRD-24 ✓, PRD-25 ✓
+Or: PRD-18 (Base Chart Wrapper) - depends on PRD-8 ✓
+Or: PRD-27 (Astro App Initialization) - depends on PRD-6 ✓, PRD-8 ✓

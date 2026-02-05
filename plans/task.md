@@ -656,8 +656,8 @@ Create filter functions for company data.
 
 #### Deliverables
 
-- [ ] `packages/data/src/filters.ts`
-- [ ] Functions:
+- [x] `packages/data/src/filters.ts`
+- [x] Functions:
   ```typescript
   filterByText(companies, query): FlowerCompany[]
   filterByCategory(companies, categories): FlowerCompany[]
@@ -673,10 +673,10 @@ Create filter functions for company data.
 
 #### Acceptance Criteria
 
-1. Each filter function works correctly
-2. Text search matches name and description
-3. Multi-value filters use OR logic within, AND between
-4. Unit test: each filter function
+1. [x] Each filter function works correctly
+2. [x] Text search matches name and description
+3. [x] Multi-value filters use OR logic within, AND between
+4. [x] Unit test: each filter function
 
 ---
 
