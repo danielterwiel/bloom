@@ -1168,10 +1168,10 @@ Sync all filter state to URL for shareable links.
 
 #### Deliverables
 
-- [ ] URL serialization for all filters
-- [ ] URL deserialization on page load
-- [ ] Browser back/forward works
-- [ ] Clean URLs (omit default values)
+- [x] URL serialization for all filters
+- [x] URL deserialization on page load
+- [x] Browser back/forward works
+- [x] Clean URLs (omit default values)
 
 #### Acceptance Criteria
 

@@ -29,3 +29,6 @@ export {
   applyAllFilters,
   type CompanyFilters,
 } from "./filters";
+
+// URL State Sync
+export { serializeFilters, deserializeFilters } from "./url-state";

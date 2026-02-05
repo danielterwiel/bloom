@@ -1,9 +1,10 @@
 /** @jsxImportSource react */
 import * as React from "react";
-import type { FlowerCompany, CompanyFilters } from "@repo/data";
+import type { FlowerCompany } from "@repo/data";
 import { applyAllFilters } from "@repo/data";
 import { VirtualList } from "./VirtualList";
 import { FilterPanel } from "./FilterPanel";
+import { useFilterUrlSync } from "../../hooks/useFilterUrlSync";
 
 interface ApiResponse {
   data: FlowerCompany[];
@@ -23,7 +24,7 @@ type FetchState =
  */
 export function CompanyExplorer() {
   const [state, setState] = React.useState<FetchState>({ status: "loading" });
-  const [filters, setFilters] = React.useState<CompanyFilters>({});
+  const [filters, setFilters] = useFilterUrlSync();
 
   // Apply filters to get filtered data
   const filteredData = React.useMemo(() => {

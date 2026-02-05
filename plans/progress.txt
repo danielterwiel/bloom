@@ -1487,3 +1487,41 @@ Note: Filter Components Track (PRDs 42-45) is now COMPLETE.
 
 Next up: PRD-46 (URL State Sync) - depends on PRD-45 ✓
 
+=== PRD-46: URL State Sync ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/data/src/url-state.ts with:
+  - serializeFilters(filters): Converts CompanyFilters to URL search param string
+  - deserializeFilters(input): Converts URL search params back to CompanyFilters
+  - Short URL param keys for clean URLs (q, cat, spec, cert, country, emp, biz, rev, fmin, fmax)
+  - Omits default/empty values for clean URLs
+  - Handles both string and URLSearchParams input
+  - Validates numeric values (foundedMin/foundedMax) with NaN protection
+- Created apps/web/src/hooks/useFilterUrlSync.ts with:
+  - React hook that syncs CompanyFilters state with URL search params
+  - Reads initial state from URL on mount (SSR-safe with typeof window check)
+  - Updates URL via pushState when filters change
+  - Responds to browser back/forward via popstate event listener
+  - Ref-based guard to prevent redundant history entries during popstate
+- Updated apps/web/src/components/react/CompanyExplorer.tsx:
+  - Replaced useState<CompanyFilters> with useFilterUrlSync() hook
+  - Removed unused CompanyFilters type import
+- Updated packages/data/src/index.ts to export serializeFilters and deserializeFilters
+- Created packages/data/src/__tests__/url-state.test.ts with 34 tests:
+  - serializeFilters tests (15): empty, text, categories, specialties, certifications, countries, employees, businessTypes, revenues, foundedMin, foundedMax, combined, omit empty
+  - deserializeFilters tests (16): empty, all param types, invalid numbers, unknown params, URLSearchParams input
+  - Roundtrip tests (3): full filters, empty, single category
+
+Acceptance criteria verified:
+- Filters update URL (pushState on filter change)
+- Reload preserves filters (deserialize from window.location.search on mount)
+- Shareable links work (URL contains serialized filter state)
+- Back/forward navigates filter history (popstate listener)
+- Unit tests pass: 34 serialize/deserialize tests
+- npx turbo typecheck passes (7 successful tasks, 0 errors)
+- npx turbo test passes (471 tests: 330 ui + 141 data)
+
+Next up: PRD-47 (E2E Test Suite) - depends on PRD-46 ✓
+
