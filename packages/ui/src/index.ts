@@ -1,5 +1,7 @@
 // UI package barrel export
-// Components will be exported here as they are created
 
 // Utilities
 export { cn } from "./lib/utils";
+
+// Components
+export { Button, buttonVariants, type ButtonProps } from "./components/button";

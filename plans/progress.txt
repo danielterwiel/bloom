@@ -191,3 +191,33 @@ Acceptance criteria verified:
 Next up: PRD-7 (Font Configuration) - depends on PRD-6 ✓
 Or: PRD-9 (Button Component) - depends on PRD-8 ✓
 Or: PRD-23 (Data Types) - depends on PRD-2 ✓
+
+=== PRD-9: Button Component ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/components/button.tsx with:
+  - CVA-based buttonVariants function
+  - 4 variants: default, outline, ghost, destructive
+  - 3 sizes: sm, md, lg (md is default)
+  - forwardRef for ref forwarding
+  - Accepts className prop that merges with base styles via cn()
+  - Uses theme tokens (bg-primary, text-primary-foreground, etc.)
+- Created packages/ui/src/__tests__/button.test.tsx with 13 tests:
+  - Tests for all 4 variants (default, outline, ghost, destructive)
+  - Tests for all 3 sizes (sm, md, lg)
+  - Tests for component props (className, variant, size, standard button attributes)
+  - Tests for forwardRef behavior (displayName)
+- Updated packages/ui/src/index.ts to export Button, buttonVariants, ButtonProps
+
+Acceptance criteria verified:
+- All variants render correctly (tested via buttonVariants function)
+- Uses theme tokens (bg-primary, text-primary-foreground, bg-destructive, etc.)
+- Forwards ref, accepts className (via forwardRef and cn())
+- Unit tests pass: 21 tests total (13 button + 6 utils + 2 sample)
+- npm run typecheck passes
+- npm run test passes
+
+Next up: PRD-10 (Input), PRD-11 (Select), PRD-12 (Checkbox), PRD-13 (Badge), PRD-14 (Card)
+Or: PRD-7 (Font Configuration), PRD-23 (Data Types)

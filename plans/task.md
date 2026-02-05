@@ -244,10 +244,10 @@ Create Button with variants: default, outline, ghost, destructive.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/components/button.tsx`
-- [ ] Variants via CVA: default, outline, ghost, destructive
-- [ ] Sizes: sm, md, lg
-- [ ] Export from index.ts
+- [x] `packages/ui/src/components/button.tsx`
+- [x] Variants via CVA: default, outline, ghost, destructive
+- [x] Sizes: sm, md, lg
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 
