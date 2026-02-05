@@ -16,6 +16,7 @@
     "@repo/data": "*",
     "@repo/styles": "*",
     "@repo/ui": "*",
+    "@tanstack/react-virtual": "^3.13.18",
     "astro": "^5.7.5",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

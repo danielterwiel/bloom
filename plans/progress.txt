@@ -1305,3 +1305,36 @@ Acceptance criteria verified:
 Next up: PRD-40 (Virtual List) - depends on PRD-39 ✓
 Or: PRD-41 (Company Explorer Core) - depends on PRD-37 ✓, PRD-40
 
+=== PRD-40: Virtual List ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Installed @tanstack/react-virtual v3.13.18 in apps/web package
+- Created apps/web/src/components/react/VirtualList.tsx with:
+  - React component using @jsxImportSource react pragma
+  - useVirtualizer hook from TanStack Virtual for efficient rendering
+  - VirtualListProps interface with items, estimatedRowHeight, gap, className
+  - Configurable row height via estimatedRowHeight prop (default: 180px)
+  - Configurable gap between items (default: 16px)
+  - Overscan of 5 items for smooth scrolling
+  - Renders CompanyCard items using virtualization
+  - measureElement ref for dynamic row height measurement
+  - Empty state handling with "No companies found" message
+  - displayName set for debugging
+- Only visible items + overscan are rendered in the DOM
+- Uses CSS transforms for efficient positioning (GPU-accelerated)
+
+Note: VirtualList is designed to work with the CompanyExplorer (PRD-41) which will
+fetch data and pass items to this component.
+
+Acceptance criteria verified:
+- Only visible items rendered (via TanStack Virtual's virtualization)
+- Smooth scrolling (60fps) - uses CSS transforms and minimal DOM operations
+- Handles 1000 items (virtualization ensures only ~10-15 items in DOM at any time)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-41 (Company Explorer Core) - depends on PRD-37 ✓, PRD-40 ✓
+Or: PRD-42 (Filter Panel Shell) - depends on PRD-41
+

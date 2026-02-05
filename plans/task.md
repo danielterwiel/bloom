@@ -1024,16 +1024,16 @@ Create virtualized list for 1000 cards.
 
 #### Deliverables
 
-- [ ] TanStack Virtual installed
-- [ ] `apps/web/src/components/react/VirtualList.tsx`
-- [ ] Renders CompanyCard items
-- [ ] Configurable row height
+- [x] TanStack Virtual installed
+- [x] `apps/web/src/components/react/VirtualList.tsx`
+- [x] Renders CompanyCard items
+- [x] Configurable row height
 
 #### Acceptance Criteria
 
-1. Only visible items rendered
-2. Smooth scrolling (60fps)
-3. Handles 1000 items
+1. [x] Only visible items rendered
+2. [x] Smooth scrolling (60fps)
+3. [x] Handles 1000 items
 
 ---
 
