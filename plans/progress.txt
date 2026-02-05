@@ -1338,3 +1338,32 @@ Acceptance criteria verified:
 Next up: PRD-41 (Company Explorer Core) - depends on PRD-37 ✓, PRD-40 ✓
 Or: PRD-42 (Filter Panel Shell) - depends on PRD-41
 
+=== PRD-41: Company Explorer Core ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Updated apps/web/src/components/react/CompanyExplorer.tsx with:
+  - Data fetching from /api/companies using fetch API
+  - React.useState with discriminated union type for loading/error/success states
+  - React.useCallback + useEffect for data fetching on mount
+  - Loading state with spinning animation and "Loading companies..." message
+  - Error state with error icon, message display, and "Try Again" button
+  - Success state passing data to VirtualList component
+  - Results count header showing total companies
+  - Responsive height using calc(100vh - 320px) with min-height fallback
+  - displayName set for debugging
+- Proper TypeScript types for API response (ApiResponse interface)
+- Proper error handling with message extraction from Error objects
+
+Acceptance criteria verified:
+- Data loads on mount (via useEffect calling fetchCompanies)
+- Loading spinner shown (animated spinner with border-t-transparent)
+- Error handled gracefully (error state with message and retry button)
+- List renders with data (VirtualList receives state.data on success)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-42 (Filter Panel Shell) - depends on PRD-41 ✓
+Or: PRD-43 (Text Search Filter) - depends on PRD-42
+

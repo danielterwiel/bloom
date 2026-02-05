@@ -1047,11 +1047,11 @@ Create CompanyExplorer with data fetching.
 
 #### Deliverables
 
-- [ ] `apps/web/src/components/react/CompanyExplorer.tsx`
-- [ ] Fetches from /api/companies
-- [ ] Loading state
-- [ ] Error state
-- [ ] Passes data to VirtualList
+- [x] `apps/web/src/components/react/CompanyExplorer.tsx`
+- [x] Fetches from /api/companies
+- [x] Loading state
+- [x] Error state
+- [x] Passes data to VirtualList
 
 #### Acceptance Criteria
 
