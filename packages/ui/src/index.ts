@@ -2,6 +2,7 @@
 
 // Utilities
 export { cn } from "./lib/utils";
+export { CHART_COLORS, CHART_LABEL_COLOR, addAlphaToOklch } from "./lib/chart-colors";
 
 // Components
 export { Button, buttonVariants, type ButtonProps } from "./components/button";

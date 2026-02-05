@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import uPlot from "uplot";
 import { BaseChart } from "./base-chart";
 import { cn } from "../lib/utils";
+import { CHART_COLORS, addAlphaToOklch } from "../lib/chart-colors";
 
 export interface LineChartDataPoint {
   /** X-axis value (typically a timestamp or number) */
@@ -38,29 +39,6 @@ export interface LineChartProps {
   title?: string;
   /** Format x-axis values as time (default: false) */
   timeScale?: boolean;
-}
-
-// Default theme chart colors (CSS variable references won't work in canvas, so we use the oklch values)
-const CHART_COLORS = [
-  "oklch(0.65 0.18 12)", // chart-1 (primary)
-  "oklch(0.55 0.08 140)", // chart-2 (secondary)
-  "oklch(0.6 0.15 45)", // chart-3 (accent)
-  "oklch(0.7 0.12 320)", // chart-4
-  "oklch(0.65 0.1 280)", // chart-5
-];
-
-/**
- * Adds alpha/opacity to an oklch color string
- */
-function addAlphaToOklch(color: string, alpha: number): string {
-  // Check if it's an oklch color
-  if (color.startsWith("oklch(")) {
-    // Remove the closing paren and add alpha
-    const base = color.slice(0, -1);
-    return `${base} / ${alpha})`;
-  }
-  // For other color formats, just return as-is (fillStyle handles opacity separately)
-  return color;
 }
 
 /**

@@ -1620,3 +1620,51 @@ Acceptance criteria verified:
 Next up: PRD-48 (Theme Audit), PRD-49 (Performance Audit), PRD-50 (Accessibility Audit)
 Or: PRD-52 (Vercel Deployment) - depends on PRD-51 ✓
 
+=== PRD-48: Theme Audit ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Conducted comprehensive theme audit across all files in the codebase:
+  - 7 Astro files (layouts, pages, components)
+  - 8 React component files (web app)
+  - 13 UI package files (9 components + 4 charts)
+  - 3 style/config files (base.css, fonts.css, global.css)
+
+Audit findings:
+- Colors match spec everywhere: All UI components and Astro pages consistently use theme tokens
+  (bg-primary, text-foreground-muted, border-border, shadow-card, etc.)
+- Spacing consistent: All pages use spacing-content, spacing-section, spacing-card tokens properly
+- Typography hierarchy correct: font-heading used for all headings, font-body applied globally
+- Charts use theme colors: All chart-1 through chart-5 oklch values match base.css @theme block
+
+Issues found and fixed:
+1. Chart color duplication: CHART_COLORS array was duplicated identically in 3 files
+   (bar-chart.tsx, line-chart.tsx, donut-chart.tsx). Extracted to shared
+   packages/ui/src/lib/chart-colors.ts with CHART_COLORS, CHART_LABEL_COLOR,
+   and addAlphaToOklch utility.
+2. Donut chart hardcoded label color: replaced inline "oklch(0.98 0.01 90)" with
+   shared CHART_LABEL_COLOR constant from chart-colors.ts
+3. Bar chart redundant fallback: replaced hardcoded oklch string fallback with
+   CHART_COLORS[0] reference
+
+Items noted but not changed (acceptable patterns):
+- Tailwind opacity modifiers (bg-primary/10, bg-secondary/5, etc.) used for decorative
+  backgrounds on pages - these are standard Tailwind patterns, not hardcoded colors
+- CompanyExplorer inline height calc (layout calculation, not a theme concern)
+- VirtualList gap=16 default (programmatic value for virtualizer, not a visual theme token)
+
+Acceptance criteria verified:
+- Colors match spec everywhere ✓
+- Spacing consistent ✓
+- Typography hierarchy correct ✓
+- Charts use theme colors ✓
+- npx turbo typecheck passes (7 successful tasks, 0 errors)
+- npx turbo test passes (471 tests: 330 ui + 141 data)
+
+Note: Screenshots not captured programmatically (would require running dev server + Playwright
+screenshot mode). The audit was conducted via comprehensive code review instead.
+
+Next up: PRD-49 (Performance Audit), PRD-50 (Accessibility Audit)
+Or: PRD-52 (Vercel Deployment) - depends on PRD-51 ✓
+

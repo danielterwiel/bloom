@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import uPlot from "uplot";
 import { BaseChart } from "./base-chart";
 import { cn } from "../lib/utils";
+import { CHART_COLORS } from "../lib/chart-colors";
 
 export interface BarChartDataPoint {
   /** Label for the bar (x-axis category) */
@@ -31,15 +32,6 @@ export interface BarChartProps {
   /** Bar width as fraction of available space (0-1) */
   barWidth?: number;
 }
-
-// Default theme chart colors (CSS variable references won't work in canvas, so we use the oklch values)
-const CHART_COLORS = [
-  "oklch(0.65 0.18 12)", // chart-1 (primary)
-  "oklch(0.55 0.08 140)", // chart-2 (secondary)
-  "oklch(0.6 0.15 45)", // chart-3 (accent)
-  "oklch(0.7 0.12 320)", // chart-4
-  "oklch(0.65 0.1 280)", // chart-5
-];
 
 /**
  * Creates a bars drawing plugin for uPlot
@@ -74,7 +66,7 @@ function barsPlugin(opts: { barWidth: number; colors: string[] }): uPlot.Plugin 
           if (!data) continue;
 
           const color = colors[(si - 1) % colors.length] ?? CHART_COLORS[0];
-          ctx.fillStyle = color ?? "oklch(0.65 0.18 12)";
+          ctx.fillStyle = color ?? CHART_COLORS[0];
 
           for (let i = 0; i < dataLen; i++) {
             const val = data[i];

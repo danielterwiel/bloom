@@ -1,5 +1,6 @@
 import { useRef, useEffect, useCallback } from "react";
 import { cn } from "../lib/utils";
+import { CHART_COLORS, CHART_LABEL_COLOR } from "../lib/chart-colors";
 
 export interface DonutChartSegment {
   /** Label for the segment */
@@ -26,15 +27,6 @@ export interface DonutChartProps {
   /** Show percentages instead of values in labels */
   showPercentages?: boolean;
 }
-
-// Default theme chart colors (CSS variable references won't work in canvas, so we use the oklch values)
-const CHART_COLORS = [
-  "oklch(0.65 0.18 12)", // chart-1 (primary)
-  "oklch(0.55 0.08 140)", // chart-2 (secondary)
-  "oklch(0.6 0.15 45)", // chart-3 (accent)
-  "oklch(0.7 0.12 320)", // chart-4
-  "oklch(0.65 0.1 280)", // chart-5
-];
 
 /**
  * DonutChart component for displaying proportional data.
@@ -121,7 +113,7 @@ export function DonutChart({
         const labelX = centerX + labelRadius * Math.cos(labelAngle);
         const labelY = centerY + labelRadius * Math.sin(labelAngle);
 
-        ctx.fillStyle = "oklch(0.98 0.01 90)"; // Light text for contrast
+        ctx.fillStyle = CHART_LABEL_COLOR;
         ctx.font = "12px Inter, sans-serif";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
