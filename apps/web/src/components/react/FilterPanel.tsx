@@ -141,6 +141,7 @@ export function FilterPanel({
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
+              aria-hidden="true"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -160,6 +161,7 @@ export function FilterPanel({
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
+              aria-hidden="true"
             >
               <circle cx="11" cy="11" r="8" />
               <path strokeLinecap="round" d="m21 21-4.35-4.35" />
@@ -172,6 +174,7 @@ export function FilterPanel({
             onChange={handleSearchChange}
             className="pl-10"
             data-slot="text-search"
+            aria-label="Search companies by name or description"
           />
         </div>
 

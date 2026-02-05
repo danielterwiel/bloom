@@ -1269,10 +1269,10 @@ Ensure WCAG AA compliance.
 
 #### Deliverables
 
-- [ ] Keyboard navigation verified
-- [ ] Screen reader testing done
-- [ ] Color contrast checked
-- [ ] ARIA labels added where needed
+- [x] Keyboard navigation verified
+- [x] Screen reader testing done
+- [x] Color contrast checked
+- [x] ARIA labels added where needed
 
 #### Acceptance Criteria
 

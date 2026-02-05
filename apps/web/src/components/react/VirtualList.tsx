@@ -38,7 +38,11 @@ export function VirtualList({
 
   if (items.length === 0) {
     return (
-      <div className="flex items-center justify-center py-12 text-foreground-muted">
+      <div
+        className="flex items-center justify-center py-12 text-foreground-muted"
+        role="status"
+        aria-live="polite"
+      >
         No companies found
       </div>
     );

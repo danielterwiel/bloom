@@ -56,9 +56,16 @@ export function CompanyExplorer() {
 
   if (state.status === "loading") {
     return (
-      <div className="rounded-card bg-background p-card shadow-card">
+      <div
+        className="rounded-card bg-background p-card shadow-card"
+        role="status"
+        aria-label="Loading companies"
+      >
         <div className="flex flex-col items-center justify-center py-12">
-          <div className="mb-4 h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <div
+            className="mb-4 h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"
+            aria-hidden="true"
+          />
           <p className="text-sm text-foreground-muted">Loading companies...</p>
         </div>
       </div>
@@ -67,7 +74,7 @@ export function CompanyExplorer() {
 
   if (state.status === "error") {
     return (
-      <div className="rounded-card bg-background p-card shadow-card">
+      <div className="rounded-card bg-background p-card shadow-card" role="alert">
         <div className="flex flex-col items-center justify-center py-12">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-destructive/10">
             <svg
@@ -76,6 +83,7 @@ export function CompanyExplorer() {
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

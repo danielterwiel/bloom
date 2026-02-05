@@ -48,19 +48,19 @@ export const CompanyCard = React.memo<CompanyCardProps>(function CompanyCard({
         )}
 
         {/* Company details */}
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
-          <div className="text-foreground-muted">Location</div>
-          <div className="truncate">{location}</div>
+        <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+          <dt className="text-foreground-muted">Location</dt>
+          <dd className="truncate">{location}</dd>
 
-          <div className="text-foreground-muted">Employees</div>
-          <div>{company.employees}</div>
+          <dt className="text-foreground-muted">Employees</dt>
+          <dd>{company.employees}</dd>
 
-          <div className="text-foreground-muted">Founded</div>
-          <div>{company.founded}</div>
+          <dt className="text-foreground-muted">Founded</dt>
+          <dd>{company.founded}</dd>
 
-          <div className="text-foreground-muted">Type</div>
-          <div>{company.businessType}</div>
-        </div>
+          <dt className="text-foreground-muted">Type</dt>
+          <dd>{company.businessType}</dd>
+        </dl>
       </CardContent>
     </Card>
   );

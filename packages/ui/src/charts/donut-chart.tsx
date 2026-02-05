@@ -26,6 +26,8 @@ export interface DonutChartProps {
   showLabels?: boolean;
   /** Show percentages instead of values in labels */
   showPercentages?: boolean;
+  /** Accessible description for the chart (used as aria-label on canvas) */
+  "aria-label"?: string;
 }
 
 /**
@@ -41,6 +43,7 @@ export function DonutChart({
   innerRadius = 0.6,
   showLabels = false,
   showPercentages = true,
+  "aria-label": ariaLabel,
 }: DonutChartProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -170,7 +173,13 @@ export function DonutChart({
       )}
       <div className="flex flex-1 items-center gap-4">
         <div ref={containerRef} className="relative flex-1 min-h-[200px]">
-          <canvas ref={canvasRef} className="absolute inset-0" data-testid="donut-chart-canvas" />
+          <canvas
+            ref={canvasRef}
+            className="absolute inset-0"
+            data-testid="donut-chart-canvas"
+            role="img"
+            aria-label={ariaLabel ?? title ?? "Donut chart"}
+          />
         </div>
         {showLegend && (
           <div className="flex flex-col gap-2" data-testid="donut-chart-legend">

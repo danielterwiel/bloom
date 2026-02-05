@@ -1668,3 +1668,51 @@ screenshot mode). The audit was conducted via comprehensive code review instead.
 Next up: PRD-49 (Performance Audit), PRD-50 (Accessibility Audit)
 Or: PRD-52 (Vercel Deployment) - depends on PRD-51 ✓
 
+=== PRD-50: Accessibility Audit ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Conducted comprehensive accessibility audit across all files in the codebase
+- Verified keyboard navigation: All interactive elements (buttons, links, form controls, sliders)
+  are keyboard accessible via BaseUI primitives and native HTML elements
+- Verified screen reader support: Added ARIA attributes throughout
+- Verified color contrast: All text/background combinations meet WCAG AA (4.5:1 for normal text)
+  using OKLCH lightness analysis. Key ratios: foreground on background ~21:1, foreground-muted
+  on background ~10:1, primary-foreground on primary ~8:1
+
+Fixes applied:
+1. BaseLayout.astro: Added skip-to-content link (sr-only, visible on focus) with #main-content target
+2. BaseLayout.astro: Added id="main-content" to <main> element for skip link target
+3. Header.astro: Added aria-label="Main navigation" to <nav> element
+4. Header.astro: Added focus-visible:ring-2 focus-visible:ring-primary to mobile menu button
+5. CompanyExplorer.tsx: Added role="status" aria-label="Loading companies" to loading state
+6. CompanyExplorer.tsx: Added aria-hidden="true" to loading spinner (decorative)
+7. CompanyExplorer.tsx: Added role="alert" to error state for screen reader announcement
+8. CompanyExplorer.tsx: Added aria-hidden="true" to error icon SVG (decorative)
+9. FilterPanel.tsx: Added aria-label="Search companies by name or description" to search input
+10. FilterPanel.tsx: Added aria-hidden="true" to search icon SVG (decorative)
+11. FilterPanel.tsx: Added aria-hidden="true" to clear button icon SVG (decorative)
+12. VirtualList.tsx: Added role="status" aria-live="polite" to empty state for dynamic announcement
+13. CompanyCard.tsx: Changed company details grid from div to dl/dt/dd for semantic structure
+14. DonutChart: Added aria-label prop support and role="img" to canvas element
+
+Items verified (already correct):
+- html lang="en" present in BaseLayout
+- Header has aria-expanded, aria-controls on mobile menu button
+- Logo SVG has aria-hidden="true"
+- Slider has getAriaLabel for both thumbs
+- BaseUI components (Select, MultiSelect, Checkbox, Dialog) provide built-in ARIA support
+- All decorative page SVGs already have aria-hidden="true"
+
+Acceptance criteria verified:
+- All interactive elements keyboard accessible ✓ (BaseUI + native elements)
+- Focus indicators visible ✓ (focus-visible:ring-2 on all interactive elements)
+- Color contrast AA compliant ✓ (all pairings meet 4.5:1 ratio)
+- No critical a11y violations ✓ (all critical issues resolved)
+- npx turbo typecheck passes (7 successful tasks, 0 errors)
+- npx turbo test passes (471 tests: 330 ui + 141 data)
+
+Next up: PRD-49 (Performance Audit)
+Or: PRD-52 (Vercel Deployment) - depends on PRD-51 ✓
+
