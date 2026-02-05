@@ -1456,3 +1456,34 @@ Acceptance criteria verified:
 
 Next up: PRD-45 (Single-Select & Range Filters) - depends on PRD-42 ✓, PRD-11 ✓, PRD-16 ✓
 
+=== PRD-45: Single-Select & Range Filters ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Updated apps/web/src/components/react/FilterPanel.tsx with:
+  - Imported Select and Slider from @repo/ui
+  - Imported EMPLOYEE_RANGES, BUSINESS_TYPES, REVENUE_RANGES from @repo/data
+  - Created option arrays for Employees, Business Type, and Revenue Select components
+  - Replaced 4 placeholder divs with actual filter controls:
+    - Employees Select: single-select wired to filters.employees (wraps value in array for filter compatibility)
+    - Business Type Select: single-select wired to filters.businessTypes
+    - Revenue Select: single-select wired to filters.revenues
+    - Founded Year Range Slider: dual-thumb slider with min=1990, max=2024
+  - Slider displays current range values (e.g., "1990–2024") above the control
+  - Slider only sets foundedMin/foundedMax when values differ from defaults (clean filter state)
+  - getAriaLabel provides accessible names for both thumbs
+  - All new filters integrate with existing Clear All functionality
+  - All filters combine correctly via applyAllFilters from @repo/data
+
+Acceptance criteria verified:
+- All filters work (Employees, Business Type, Revenue selects + Founded Year slider)
+- Range slider has two thumbs (via Slider component with array value)
+- Filters combine correctly (via applyAllFilters from @repo/data with AND between, OR within)
+- npx turbo typecheck passes (7 successful tasks, 0 errors)
+- npx turbo test passes (437 tests: 330 ui + 107 data)
+
+Note: Filter Components Track (PRDs 42-45) is now COMPLETE.
+
+Next up: PRD-46 (URL State Sync) - depends on PRD-45 ✓
+

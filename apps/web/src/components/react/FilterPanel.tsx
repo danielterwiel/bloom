@@ -1,9 +1,17 @@
 /** @jsxImportSource react */
 import * as React from "react";
-import { CATEGORIES, SPECIALTIES, CERTIFICATIONS, COUNTRIES } from "@repo/data";
+import {
+  CATEGORIES,
+  SPECIALTIES,
+  CERTIFICATIONS,
+  COUNTRIES,
+  EMPLOYEE_RANGES,
+  BUSINESS_TYPES,
+  REVENUE_RANGES,
+} from "@repo/data";
 import type { CompanyFilters } from "@repo/data";
-import { Input, MultiSelect } from "@repo/ui";
-import type { MultiSelectOption } from "@repo/ui";
+import { Input, MultiSelect, Select, Slider } from "@repo/ui";
+import type { MultiSelectOption, SelectOption } from "@repo/ui";
 
 export interface FilterPanelProps {
   filters: CompanyFilters;
@@ -40,6 +48,13 @@ const certificationOptions: MultiSelectOption[] = CERTIFICATIONS.map((c) => ({
   label: c,
 }));
 const countryOptions: MultiSelectOption[] = COUNTRIES.map((c) => ({ value: c, label: c }));
+
+const employeeOptions: SelectOption[] = EMPLOYEE_RANGES.map((e) => ({ value: e, label: e }));
+const businessTypeOptions: SelectOption[] = BUSINESS_TYPES.map((b) => ({ value: b, label: b }));
+const revenueOptions: SelectOption[] = REVENUE_RANGES.map((r) => ({ value: r, label: r }));
+
+const FOUNDED_MIN = 1990;
+const FOUNDED_MAX = 2024;
 
 /**
  * FilterPanel - Container component for all filter controls
@@ -194,23 +209,60 @@ export function FilterPanel({
           }
         />
 
-        {/* Single-select and range filter slots (PRD-45) */}
-        <div
-          className="h-10 rounded-md border border-dashed border-border bg-muted/30"
-          data-slot="employees-filter"
+        {/* Single-select filters (PRD-45) */}
+        <Select
+          options={employeeOptions}
+          placeholder="Employees"
+          value={filters.employees?.[0]}
+          onValueChange={(value) =>
+            onFiltersChange({ ...filters, employees: value ? [value] : undefined })
+          }
         />
-        <div
-          className="h-10 rounded-md border border-dashed border-border bg-muted/30"
-          data-slot="business-type-filter"
+        <Select
+          options={businessTypeOptions}
+          placeholder="Business Type"
+          value={filters.businessTypes?.[0]}
+          onValueChange={(value) =>
+            onFiltersChange({ ...filters, businessTypes: value ? [value] : undefined })
+          }
         />
-        <div
-          className="h-10 rounded-md border border-dashed border-border bg-muted/30"
-          data-slot="revenue-filter"
+        <Select
+          options={revenueOptions}
+          placeholder="Revenue"
+          value={filters.revenues?.[0]}
+          onValueChange={(value) =>
+            onFiltersChange({ ...filters, revenues: value ? [value] : undefined })
+          }
         />
-        <div
-          className="h-10 rounded-md border border-dashed border-border bg-muted/30"
-          data-slot="founded-year-filter"
-        />
+
+        {/* Founded year range slider (PRD-45) */}
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-foreground-muted">Founded Year</span>
+            <span className="font-medium text-foreground">
+              {filters.foundedMin ?? FOUNDED_MIN}–{filters.foundedMax ?? FOUNDED_MAX}
+            </span>
+          </div>
+          <Slider
+            value={[filters.foundedMin ?? FOUNDED_MIN, filters.foundedMax ?? FOUNDED_MAX] as const}
+            min={FOUNDED_MIN}
+            max={FOUNDED_MAX}
+            step={1}
+            onValueChange={(value) => {
+              if (Array.isArray(value)) {
+                const [min, max] = value;
+                onFiltersChange({
+                  ...filters,
+                  foundedMin: min === FOUNDED_MIN ? undefined : min,
+                  foundedMax: max === FOUNDED_MAX ? undefined : max,
+                });
+              }
+            }}
+            getAriaLabel={(index) =>
+              index === 0 ? "Founded year minimum" : "Founded year maximum"
+            }
+          />
+        </div>
       </div>
     </div>
   );

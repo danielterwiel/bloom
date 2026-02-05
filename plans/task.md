@@ -1145,10 +1145,10 @@ Add remaining filters: Employees, Business Type, Revenue, Founded Year.
 
 #### Deliverables
 
-- [ ] Employees Select
-- [ ] Business Type Select
-- [ ] Revenue Select
-- [ ] Founded Year Range Slider (min/max)
+- [x] Employees Select
+- [x] Business Type Select
+- [x] Revenue Select
+- [x] Founded Year Range Slider (min/max)
 
 #### Acceptance Criteria
 
