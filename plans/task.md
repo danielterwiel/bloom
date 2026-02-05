@@ -909,15 +909,15 @@ Add companies by founding year line chart.
 
 #### Deliverables
 
-- [ ] React island component wrapping LineChart
-- [ ] Data aggregation by year
-- [ ] `client:visible` directive
+- [x] React island component wrapping LineChart
+- [x] Data aggregation by year
+- [x] `client:visible` directive
 
 #### Acceptance Criteria
 
-1. Chart renders when visible
-2. Shows timeline correctly
-3. Uses theme colors
+1. [x] Chart renders when visible
+2. [x] Shows timeline correctly
+3. [x] Uses theme colors
 
 ---
 

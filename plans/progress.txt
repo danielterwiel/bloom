@@ -1182,3 +1182,32 @@ Note: Pre-existing test failures are unrelated to this PR:
 Next up: PRD-35 (Founding Year Chart), PRD-36 (Geographic Distribution Chart)
 Or: PRD-38 (Companies Page Shell) - depends on PRD-29 ✓
 
+=== PRD-35: Founding Year Chart ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/components/react/FoundingYearChart.tsx with:
+  - React island component wrapping LineChart from @repo/ui
+  - Data aggregation using useMemo to count companies per founding year
+  - Imports companies from @repo/data
+  - Single series line chart showing company counts over time
+  - Area fill enabled with 15% opacity for visual appeal
+  - Configured LineChart with showLegend=false (single series)
+- Updated apps/web/src/pages/insights.astro to:
+  - Import FoundingYearChart component
+  - Replace placeholder with actual chart using client:visible directive
+
+Note: The chart uses client:visible which means it only hydrates when scrolled into view,
+improving initial page load performance.
+
+Acceptance criteria verified:
+- Chart renders when visible (via client:visible directive)
+- Shows timeline correctly (x-axis: years, y-axis: company count)
+- Uses theme colors (LineChart uses CHART_COLORS matching theme tokens)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-36 (Geographic Distribution Chart) - depends on PRD-19 ✓, PRD-24 ✓, PRD-32 ✓
+Or: PRD-38 (Companies Page Shell) - depends on PRD-29 ✓
+
