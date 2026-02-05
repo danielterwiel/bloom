@@ -1211,3 +1211,34 @@ Acceptance criteria verified:
 Next up: PRD-36 (Geographic Distribution Chart) - depends on PRD-19 ✓, PRD-24 ✓, PRD-32 ✓
 Or: PRD-38 (Companies Page Shell) - depends on PRD-29 ✓
 
+=== PRD-36: Geographic Distribution Chart ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/components/react/GeographicDistributionChart.tsx with:
+  - React island component wrapping BarChart from @repo/ui
+  - Data aggregation using useMemo to count companies per country
+  - Imports companies from @repo/data
+  - Sorts countries by count descending and shows top 10
+  - Single series bar chart showing company counts per country
+  - Configured BarChart with showLegend=false (single series)
+- Updated apps/web/src/pages/insights.astro to:
+  - Import GeographicDistributionChart component
+  - Replace placeholder with actual chart using client:visible directive
+
+Note: The chart uses client:visible which means it only hydrates when scrolled into view,
+improving initial page load performance.
+
+Acceptance criteria verified:
+- Chart renders when visible (via client:visible directive)
+- Shows top countries (top 10 countries by company count, sorted descending)
+- Uses theme colors (BarChart uses CHART_COLORS matching theme tokens)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Note: Insights Charts Track (PRDs 33-36) is now COMPLETE.
+
+Next up: PRD-38 (Companies Page Shell) - depends on PRD-29 ✓
+Or: PRD-39 (Company Card) - depends on PRD-14 ✓, PRD-23 ✓
+

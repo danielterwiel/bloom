@@ -931,15 +931,15 @@ Add country distribution bar chart.
 
 #### Deliverables
 
-- [ ] React island component wrapping BarChart
-- [ ] Data aggregation by country
-- [ ] `client:visible` directive
+- [x] React island component wrapping BarChart
+- [x] Data aggregation by country
+- [x] `client:visible` directive
 
 #### Acceptance Criteria
 
-1. Chart renders when visible
-2. Shows top countries
-3. Uses theme colors
+1. [x] Chart renders when visible
+2. [x] Shows top countries
+3. [x] Uses theme colors
 
 ---
 
