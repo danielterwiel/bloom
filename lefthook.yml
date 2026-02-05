@@ -1,0 +1,13 @@
+# Lefthook configuration for pre-commit hooks
+# https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: "*.{js,jsx,ts,tsx,mjs,cjs}"
+      run: npx oxlint {staged_files}
+    format:
+      glob: "*.{js,jsx,ts,tsx,mjs,cjs,json,css,md}"
+      run: npx oxfmt --write {staged_files}
+      stage_fixed: true
