@@ -2,9 +2,190 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout>
-  <div class="p-content">
-    <h1 class="text-4xl font-bold text-primary">Flower Industry Directory</h1>
-    <p class="mt-4 text-foreground-muted">Welcome to the flower industry directory.</p>
-  </div>
+<BaseLayout title="Flower Industry Directory | Bloom" description="Discover and explore the global flower industry. Browse 1000+ companies, from florists to wholesalers, nurseries to exporters.">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-section">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/5 blur-3xl"></div>
+      <div class="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-secondary/5 blur-3xl"></div>
+      <div class="absolute top-40 right-1/4 w-48 h-48 rounded-full bg-accent/5 blur-2xl"></div>
+    </div>
+
+    <div class="mx-auto max-w-6xl px-content text-center">
+      <!-- Flower icon -->
+      <div class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+        <svg class="h-10 w-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 3c-1.5 2-2.5 4-2.5 6 0 1.5.5 2.5 2.5 3.5 2-1 2.5-2 2.5-3.5 0-2-1-4-2.5-6z" fill="currentColor" opacity="0.2"/>
+          <path d="M12 9.5c-2-1.5-4-2.5-6-2.5-1.5 0-2.5.5-3.5 2.5 1 2 2 2.5 3.5 2.5 2 0 4-1 6-2.5z" fill="currentColor" opacity="0.2"/>
+          <path d="M12 9.5c2-1.5 4-2.5 6-2.5 1.5 0 2.5.5 3.5 2.5-1 2-2 2.5-3.5 2.5-2 0-4-1-6-2.5z" fill="currentColor" opacity="0.2"/>
+          <path d="M12 9.5c-2 1.5-4 2.5-6 2.5-1.5 0-2.5-.5-3.5-2.5 1-2 2-2.5 3.5-2.5 2 0 4 1 6 2.5z" fill="currentColor" opacity="0.15"/>
+          <path d="M12 9.5c2 1.5 4 2.5 6 2.5 1.5 0 2.5-.5 3.5-2.5-1-2-2-2.5-3.5-2.5-2 0-4 1-6 2.5z" fill="currentColor" opacity="0.15"/>
+          <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.3"/>
+          <path d="M12 15v6" stroke-linecap="round"/>
+          <path d="M10 18c0-1.5 1-2.5 2-3 1 .5 2 1.5 2 3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <h1 class="font-heading text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+        Flower Industry
+        <span class="block text-primary">Directory</span>
+      </h1>
+
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-foreground-muted sm:text-xl">
+        Discover and explore the global flower industry. Browse our comprehensive database of
+        florists, nurseries, wholesalers, and more from around the world.
+      </p>
+
+      <!-- CTA Button -->
+      <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <a
+          href="/companies"
+          class="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-base font-medium text-primary-foreground transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        >
+          Explore Companies
+          <svg class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+        <a
+          href="/insights"
+          class="inline-flex h-12 items-center justify-center rounded-md border border-border bg-transparent px-8 text-base font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        >
+          View Insights
+        </a>
+      </div>
+
+      <!-- Stats preview -->
+      <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-4">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-primary sm:text-4xl">1000+</div>
+          <div class="mt-1 text-sm text-foreground-muted">Companies</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-secondary sm:text-4xl">20+</div>
+          <div class="mt-1 text-sm text-foreground-muted">Countries</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-accent sm:text-4xl">10</div>
+          <div class="mt-1 text-sm text-foreground-muted">Categories</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-chart-4 sm:text-4xl">20+</div>
+          <div class="mt-1 text-sm text-foreground-muted">Specialties</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Section -->
+  <section class="bg-surface py-section">
+    <div class="mx-auto max-w-6xl px-content">
+      <h2 class="text-center font-heading text-3xl font-semibold text-foreground sm:text-4xl">
+        Explore by Category
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-foreground-muted">
+        From local florists to international wholesalers, find the perfect partner for your floral needs.
+      </p>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Category Card: Florist -->
+        <a href="/companies?category=Florist" class="group rounded-card bg-background p-card shadow-card transition-shadow hover:shadow-elevated">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3c-1.5 2-2.5 4-2.5 6 0 1.5.5 2.5 2.5 3.5 2-1 2.5-2 2.5-3.5 0-2-1-4-2.5-6z"/>
+              <path d="M12 12.5V21"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 font-heading text-lg font-semibold text-foreground group-hover:text-primary">Florists</h3>
+          <p class="mt-2 text-sm text-foreground-muted">Retail flower shops and boutiques serving local customers with arrangements and bouquets.</p>
+        </a>
+
+        <!-- Category Card: Nursery -->
+        <a href="/companies?category=Nursery" class="group rounded-card bg-background p-card shadow-card transition-shadow hover:shadow-elevated">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary/10 text-secondary">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 21h10"/>
+              <path d="M12 21V11"/>
+              <path d="M12 11C12 11 8 7 8 4a4 4 0 018 0c0 3-4 7-4 7z"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 font-heading text-lg font-semibold text-foreground group-hover:text-secondary">Nurseries</h3>
+          <p class="mt-2 text-sm text-foreground-muted">Plant nurseries growing and cultivating flowers, plants, and seedlings for wholesale and retail.</p>
+        </a>
+
+        <!-- Category Card: Wholesale -->
+        <a href="/companies?category=Wholesale" class="group rounded-card bg-background p-card shadow-card transition-shadow hover:shadow-elevated">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 text-accent">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+              <path d="M12 12v4"/>
+              <path d="M10 14h4"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 font-heading text-lg font-semibold text-foreground group-hover:text-accent">Wholesalers</h3>
+          <p class="mt-2 text-sm text-foreground-muted">Bulk flower distributors supplying florists, event planners, and retailers with fresh inventory.</p>
+        </a>
+
+        <!-- Category Card: Grower -->
+        <a href="/companies?category=Grower" class="group rounded-card bg-background p-card shadow-card transition-shadow hover:shadow-elevated">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-success/10 text-success">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22V12"/>
+              <path d="M12 12c2-2 4-3 6-3 0 3-2 5-6 6"/>
+              <path d="M12 12c-2-2-4-3-6-3 0 3 2 5 6 6"/>
+              <path d="M12 8c1-1.5 2-2.5 3-2.5 0 1.5-1 2.5-3 3"/>
+              <path d="M12 8c-1-1.5-2-2.5-3-2.5 0 1.5 1 2.5 3 3"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 font-heading text-lg font-semibold text-foreground group-hover:text-success">Growers</h3>
+          <p class="mt-2 text-sm text-foreground-muted">Flower farms and growers producing fresh-cut flowers and plants for domestic and export markets.</p>
+        </a>
+
+        <!-- Category Card: Importer/Exporter -->
+        <a href="/companies?category=Importer%2FExporter" class="group rounded-card bg-background p-card shadow-card transition-shadow hover:shadow-elevated">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-chart-4/10 text-chart-4">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20"/>
+              <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 font-heading text-lg font-semibold text-foreground group-hover:text-chart-4">Importers/Exporters</h3>
+          <p class="mt-2 text-sm text-foreground-muted">International traders moving flowers across borders, connecting global markets.</p>
+        </a>
+
+        <!-- Category Card: Event/Wedding -->
+        <a href="/companies?category=Event%2FWedding" class="group rounded-card bg-background p-card shadow-card transition-shadow hover:shadow-elevated">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-chart-5/10 text-chart-5">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="mt-4 font-heading text-lg font-semibold text-foreground group-hover:text-chart-5">Event & Wedding</h3>
+          <p class="mt-2 text-sm text-foreground-muted">Specialists in wedding flowers, corporate events, and special occasion arrangements.</p>
+        </a>
+      </div>
+
+      <div class="mt-12 text-center">
+        <a
+          href="/companies"
+          class="inline-flex items-center text-primary hover:text-primary-hover"
+        >
+          View all categories
+          <svg class="ml-1 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  /* View Transition animations for hero elements */
+  h1 {
+    view-transition-name: hero-title;
+  }
+</style>

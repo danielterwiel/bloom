@@ -971,3 +971,39 @@ Next up: PRD-30 (Landing Page) - depends on PRD-29 ✓
 Or: PRD-31 (About Page) - depends on PRD-29 ✓
 Or: PRD-32 (Insights Page Shell) - depends on PRD-29 ✓
 
+=== PRD-30: Landing Page ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Completely rewrote apps/web/src/pages/index.astro with:
+  - Hero section with decorative background blur elements (primary, secondary, accent colors)
+  - Centered flower icon SVG with petal design
+  - "Flower Industry Directory" headline using font-heading
+  - Descriptive subtext introducing the directory
+  - Primary CTA button linking to /companies with arrow icon
+  - Secondary CTA button linking to /insights (outline style)
+  - Stats preview showing 1000+ Companies, 20+ Countries, 10 Categories, 20+ Specialties
+  - Featured "Explore by Category" section with 6 category cards:
+    - Florists, Nurseries, Wholesalers, Growers, Importers/Exporters, Event & Wedding
+  - Each card has icon, title, description, and links to /companies with category filter
+  - "View all categories" link at bottom
+  - View Transition animation via view-transition-name on h1
+  - All theme tokens used (colors, spacing, typography, shadows, radius)
+  - Fully responsive design (mobile to desktop)
+- Custom meta title and description passed to BaseLayout
+
+Acceptance criteria verified:
+- Page renders at / (verified via build)
+- CTA links to /companies (href="/companies")
+- View Transition works (view-transition-name: hero-title on h1)
+- Matches flower theme (uses theme colors, font-heading, flower icons)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Note: Static Pages Track D (PRD-30) is now COMPLETE.
+
+Next up: PRD-31 (About Page) - depends on PRD-29 ✓
+Or: PRD-32 (Insights Page Shell) - depends on PRD-29 ✓
+Or: PRD-37 (Companies API Endpoint) - depends on PRD-24 ✓, PRD-27 ✓
+

@@ -792,19 +792,19 @@ Create the home page with hero and CTA.
 
 #### Deliverables
 
-- [ ] `apps/web/src/pages/index.astro`
-- [ ] Hero section with flower theme
-- [ ] "Flower Industry Directory" headline
-- [ ] CTA button → /companies
-- [ ] Featured section (placeholder)
-- [ ] View Transition animations
+- [x] `apps/web/src/pages/index.astro`
+- [x] Hero section with flower theme
+- [x] "Flower Industry Directory" headline
+- [x] CTA button → /companies
+- [x] Featured section (placeholder)
+- [x] View Transition animations
 
 #### Acceptance Criteria
 
-1. Page renders at /
-2. CTA links to /companies
-3. View Transition works
-4. Matches flower theme
+1. [x] Page renders at /
+2. [x] CTA links to /companies
+3. [x] View Transition works
+4. [x] Matches flower theme
 
 ---
 
