@@ -767,3 +767,41 @@ Acceptance criteria verified:
 Next up: PRD-20 (Line Chart), PRD-21 (Donut Chart)
 Or: PRD-27 (Astro App Initialization) to start Astro App Setup track
 
+=== PRD-20: Line Chart ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/charts/line-chart.tsx with:
+  - LineChart component for displaying time-series or continuous data
+  - LineChartProps interface with series, className, showLegend, title, timeScale
+  - LineChartSeries interface with name, data, optional color, width, showPoints, fill, fillOpacity
+  - LineChartDataPoint interface with x and y numeric values
+  - Uses theme colors (chart-1 through chart-5) defined as oklch values
+  - Support for multiple series with automatic x-value alignment
+  - Optional fill area under lines with configurable opacity
+  - Optional point markers on data points
+  - Time scale support for timestamp x-values
+  - Responsive via BaseChart wrapper (uses ResizeObserver)
+  - Empty state handling with "No data available" message
+- Created packages/ui/src/__tests__/charts/line-chart.test.tsx with 44 tests:
+  - Component structure tests (displayName, rendering, className)
+  - Series data tests (single, multiple, empty, custom colors, width, showPoints, fill, fillOpacity)
+  - Data points tests (x/y values, numeric, empty, timestamps)
+  - Configuration options tests (showLegend, title, timeScale)
+  - Theme colors tests (defaults, custom overrides)
+  - Interface tests (LineChartProps, LineChartSeries, LineChartDataPoint)
+  - Edge cases (single point, large datasets, zero/negative/decimal values, unordered x, different x per series)
+- Updated packages/ui/src/index.ts to export LineChart, LineChartProps, LineChartSeries, LineChartDataPoint
+
+Acceptance criteria verified:
+- Renders line(s) correctly (via uPlot native line rendering)
+- Uses theme colors (CHART_COLORS array with oklch values matching theme)
+- Responsive (inherits from BaseChart wrapper with ResizeObserver)
+- Unit tests pass: 402 tests total (295 ui + 107 data)
+- npm run typecheck passes (3 successful tasks)
+- npm run test passes
+
+Next up: PRD-21 (Donut Chart), PRD-22 (Export All Charts)
+Or: PRD-27 (Astro App Initialization) to start Astro App Setup track
+

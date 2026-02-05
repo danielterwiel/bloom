@@ -511,17 +511,17 @@ Create LineChart component.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/charts/line-chart.tsx`
-- [ ] Uses theme colors
-- [ ] Configurable data, labels, multiple series
-- [ ] Export from index.ts
+- [x] `packages/ui/src/charts/line-chart.tsx`
+- [x] Uses theme colors
+- [x] Configurable data, labels, multiple series
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 
-1. Renders line(s) correctly
-2. Uses theme colors
-3. Responsive
-4. Unit test: render with data
+1. [x] Renders line(s) correctly
+2. [x] Uses theme colors
+3. [x] Responsive
+4. [x] Unit test: render with data
 
 ---
 

@@ -60,3 +60,9 @@ export {
   type BarChartSeries,
   type BarChartDataPoint,
 } from "./charts/bar-chart";
+export {
+  LineChart,
+  type LineChartProps,
+  type LineChartSeries,
+  type LineChartDataPoint,
+} from "./charts/line-chart";
