@@ -1001,16 +1001,16 @@ Create CompanyCard component displaying company info.
 
 #### Deliverables
 
-- [ ] `apps/web/src/components/react/CompanyCard.tsx`
-- [ ] Displays: name, category, specialty badges, location, employees
-- [ ] Uses Card from UI package
-- [ ] Memoized for virtualization
+- [x] `apps/web/src/components/react/CompanyCard.tsx`
+- [x] Displays: name, category, specialty badges, location, employees
+- [x] Uses Card from UI package
+- [x] Memoized for virtualization
 
 #### Acceptance Criteria
 
-1. Renders all company fields
-2. Uses theme styling
-3. Memoized (React.memo)
+1. [x] Renders all company fields
+2. [x] Uses theme styling
+3. [x] Memoized (React.memo)
 
 ---
 

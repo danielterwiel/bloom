@@ -1276,3 +1276,32 @@ Acceptance criteria verified:
 Next up: PRD-39 (Company Card) - depends on PRD-14 ✓, PRD-23 ✓
 Or: PRD-40 (Virtual List) - depends on PRD-39
 
+=== PRD-39: Company Card ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/components/react/CompanyCard.tsx with:
+  - React component using @jsxImportSource react pragma
+  - FlowerCompany as prop type from @repo/data
+  - Uses Card, CardHeader, CardTitle, CardContent, Badge from @repo/ui
+  - Displays company name in CardTitle
+  - Displays category as Badge (secondary variant)
+  - Displays up to 3 specialty badges (outline variant) with +N indicator for overflow
+  - Displays location (headquarters + country combined)
+  - Displays employees, founded year, and business type
+  - Grid layout for company details with foreground-muted labels
+  - React.memo wrapper for virtualization optimization
+  - displayName set for debugging
+  - className prop support for external styling
+
+Acceptance criteria verified:
+- Renders all company fields (name, category, specialty, location, employees, founded, type)
+- Uses theme styling (theme tokens via Card/Badge components, text-foreground-muted)
+- Memoized (React.memo with named function)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-40 (Virtual List) - depends on PRD-39 ✓
+Or: PRD-41 (Company Explorer Core) - depends on PRD-37 ✓, PRD-40
+
