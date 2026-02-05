@@ -123,8 +123,8 @@ Set up formatting, linting, and pre-commit hooks.
 Create styles package with Tailwind v4 @theme semantic tokens.
 
 #### Deliverables
-- [ ] `packages/styles/package.json`
-- [ ] `packages/styles/src/base.css` with full `@theme` block:
+- [x] `packages/styles/package.json`
+- [x] `packages/styles/src/base.css` with full `@theme` block:
   ```css
   @theme {
     --color-primary: oklch(0.65 0.18 12);
@@ -159,7 +159,7 @@ Create styles package with Tailwind v4 @theme semantic tokens.
     --shadow-elevated: 0 8px 24px oklch(0.20 0.02 90 / 0.12);
   }
   ```
-- [ ] `packages/styles/tailwind.config.ts` (shared preset)
+- [x] `packages/styles/tailwind.config.ts` (shared preset)
 
 #### Acceptance Criteria
 1. Package builds without errors

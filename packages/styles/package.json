@@ -1,0 +1,22 @@
+{
+  "name": "@repo/styles",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./base.css": "./src/base.css",
+    "./tailwind.config": {
+      "types": "./dist/tailwind.config.d.ts",
+      "import": "./dist/tailwind.config.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "*",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.2"
+  }
+}
