@@ -462,18 +462,18 @@ Create shared uPlot wrapper with lifecycle management.
 
 #### Deliverables
 
-- [ ] `uplot` and `uplot-react` installed
-- [ ] `packages/ui/src/charts/base-chart.tsx`
-- [ ] Ref management
-- [ ] ResizeObserver for responsive sizing
-- [ ] Cleanup on unmount
+- [x] `uplot` and `uplot-react` installed
+- [x] `packages/ui/src/charts/base-chart.tsx`
+- [x] Ref management
+- [x] ResizeObserver for responsive sizing
+- [x] Cleanup on unmount
 
 #### Acceptance Criteria
 
-1. Chart instance created correctly
-2. Resizes on container change
-3. No memory leaks on unmount
-4. Unit test: mount, resize, unmount
+1. [x] Chart instance created correctly
+2. [x] Resizes on container change
+3. [x] No memory leaks on unmount
+4. [x] Unit test: mount, resize, unmount
 
 ---
 

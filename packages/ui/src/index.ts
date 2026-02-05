@@ -51,3 +51,6 @@ export {
   type MultiSelectProps,
   type MultiSelectOption,
 } from "./components/multi-select";
+
+// Charts
+export { BaseChart, type BaseChartProps } from "./charts/base-chart";

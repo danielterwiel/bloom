@@ -693,3 +693,39 @@ Note: Data Package Track C (PRDs 23-26) is now COMPLETE.
 Next up: PRD-18 (Base Chart Wrapper) to start Chart Components track
 Or: PRD-27 (Astro App Initialization) to start Astro App Setup track
 
+=== PRD-18: Base Chart Wrapper ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Installed uplot (v1.6.32) and uplot-react (v1.2.4) in @repo/ui package
+- Created packages/ui/src/charts/base-chart.tsx with:
+  - BaseChart component wrapping uPlot with React lifecycle
+  - BaseChartProps interface with options, data, className, onCreate, onDestroy
+  - Ref management using useRef for chart instance
+  - ResizeObserver for responsive sizing (updates dimensions on container resize)
+  - Cleanup on unmount (destroys chart, disconnects observer)
+  - setSize call for efficient resize handling without full re-render
+  - data-testid for testing
+- Created packages/ui/src/__tests__/charts/base-chart.test.tsx with 22 tests:
+  - Component structure tests (displayName, props)
+  - Callback tests (onCreate, onDestroy)
+  - Props validation tests (required props, data formats, multiple series)
+  - Options configuration tests (series, scales, axes, cursor, legend)
+  - ResizeObserver setup tests
+  - BaseChartProps interface tests
+- Updated packages/ui/src/index.ts to export BaseChart and BaseChartProps
+
+Acceptance criteria verified:
+- Chart instance created correctly (via uPlot constructor in useEffect)
+- Resizes on container change (ResizeObserver + setSize)
+- No memory leaks on unmount (chart.destroy() and observer.disconnect() in cleanup)
+- Unit tests pass: 326 tests total (219 ui + 107 data)
+- npm run typecheck passes (3 successful tasks)
+- npm run test passes
+
+Note: Chart Components Track B started. PRD-18 complete.
+
+Next up: PRD-19 (Bar Chart), PRD-20 (Line Chart), PRD-21 (Donut Chart)
+Or: PRD-27 (Astro App Initialization) to start Astro App Setup track
+
