@@ -1242,3 +1242,37 @@ Note: Insights Charts Track (PRDs 33-36) is now COMPLETE.
 Next up: PRD-38 (Companies Page Shell) - depends on PRD-29 ✓
 Or: PRD-39 (Company Card) - depends on PRD-14 ✓, PRD-23 ✓
 
+=== PRD-38: Companies Page Shell ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/pages/companies.astro with:
+  - Hero section with decorative background blur elements (primary, secondary, accent colors)
+  - Building icon SVG in rounded container
+  - "Browse Companies" headline with font-heading styling
+  - Description about exploring 1000+ flower industry companies
+  - View Transition animation via view-transition-name: companies-title on h1
+- Created apps/web/src/components/react/CompanyExplorer.tsx with:
+  - React island component placeholder using @jsxImportSource react pragma
+  - Loading message indicating directory loading
+  - Styled with theme tokens matching other components
+- Loading state implementation:
+  - Loading spinner shown before React hydration
+  - MutationObserver + timeout fallback to detect hydration
+  - View Transition support via astro:after-swap listener
+- CompanyExplorer uses client:load directive for immediate hydration
+
+Note: The CompanyExplorer is a placeholder component that will be expanded in PRD-41
+to include data fetching, loading states, error handling, and the virtual list.
+
+Acceptance criteria verified:
+- Page renders at /companies (file created at apps/web/src/pages/companies.astro)
+- Island hydrates immediately (client:load directive)
+- Loading state visible briefly (spinner shown before hydration)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-39 (Company Card) - depends on PRD-14 ✓, PRD-23 ✓
+Or: PRD-40 (Virtual List) - depends on PRD-39
+

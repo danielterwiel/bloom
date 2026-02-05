@@ -979,15 +979,15 @@ Create companies page with React island mount point.
 
 #### Deliverables
 
-- [ ] `apps/web/src/pages/companies.astro`
-- [ ] CompanyExplorer island with `client:load`
-- [ ] Loading state while hydrating
+- [x] `apps/web/src/pages/companies.astro`
+- [x] CompanyExplorer island with `client:load`
+- [x] Loading state while hydrating
 
 #### Acceptance Criteria
 
-1. Page renders at /companies
-2. Island hydrates immediately
-3. Loading state visible briefly
+1. [x] Page renders at /companies
+2. [x] Island hydrates immediately
+3. [x] Loading state visible briefly
 
 ---
 
