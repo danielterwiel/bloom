@@ -1367,3 +1367,37 @@ Acceptance criteria verified:
 Next up: PRD-42 (Filter Panel Shell) - depends on PRD-41 ✓
 Or: PRD-43 (Text Search Filter) - depends on PRD-42
 
+=== PRD-42: Filter Panel Shell ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/components/react/FilterPanel.tsx with:
+  - FilterPanelProps interface with filters, onFiltersChange, resultsCount, totalCount, className
+  - Uses CompanyFilters type from @repo/data for type-safe filter state
+  - Grid/flex layout for filter controls (responsive grid: sm:2col, lg:3col, xl:4col)
+  - Results count display showing "X of Y companies" when filtered
+  - Clear all button that appears only when filters are active
+  - hasActiveFilters computed via useMemo checking all filter fields
+  - Placeholder slots with data-slot attributes for each filter type (PRDs 43-45)
+  - displayName set for debugging
+- Updated apps/web/src/components/react/CompanyExplorer.tsx with:
+  - Filter state management using React.useState<CompanyFilters>
+  - Integration with applyAllFilters from @repo/data for client-side filtering
+  - filteredData computed via useMemo from state.data and filters
+  - FilterPanel component rendered above the VirtualList
+  - VirtualList now receives filteredData instead of raw data
+  - Adjusted layout height to account for FilterPanel
+
+Acceptance criteria verified:
+- Panel renders with placeholder slots (9 slots with data-slot attributes)
+- Clear all button present (appears when hasActiveFilters is true)
+- Results count displays (shows filtered count vs total count)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Note: Filter Components Track (PRDs 42-45) started. PRD-42 complete.
+
+Next up: PRD-43 (Text Search Filter) - depends on PRD-42 ✓
+Or: PRD-44 (Multi-Select Filters) - depends on PRD-42 ✓
+

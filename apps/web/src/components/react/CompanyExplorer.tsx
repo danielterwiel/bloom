@@ -1,7 +1,9 @@
 /** @jsxImportSource react */
 import * as React from "react";
-import type { FlowerCompany } from "@repo/data";
+import type { FlowerCompany, CompanyFilters } from "@repo/data";
+import { applyAllFilters } from "@repo/data";
 import { VirtualList } from "./VirtualList";
+import { FilterPanel } from "./FilterPanel";
 
 interface ApiResponse {
   data: FlowerCompany[];
@@ -21,6 +23,13 @@ type FetchState =
  */
 export function CompanyExplorer() {
   const [state, setState] = React.useState<FetchState>({ status: "loading" });
+  const [filters, setFilters] = React.useState<CompanyFilters>({});
+
+  // Apply filters to get filtered data
+  const filteredData = React.useMemo(() => {
+    if (state.status !== "success") return [];
+    return applyAllFilters(state.data, filters);
+  }, [state, filters]);
 
   const fetchCompanies = React.useCallback(async () => {
     setState({ status: "loading" });
@@ -90,14 +99,17 @@ export function CompanyExplorer() {
   }
 
   return (
-    <div className="rounded-card bg-background shadow-card overflow-hidden">
-      <div className="border-b border-border p-card">
-        <p className="text-sm text-foreground-muted">
-          Showing <span className="font-medium text-foreground">{state.total}</span> companies
-        </p>
-      </div>
-      <div style={{ height: "calc(100vh - 320px)", minHeight: "400px" }}>
-        <VirtualList items={state.data} />
+    <div className="flex flex-col gap-4">
+      <FilterPanel
+        filters={filters}
+        onFiltersChange={setFilters}
+        resultsCount={filteredData.length}
+        totalCount={state.total}
+      />
+      <div className="rounded-card bg-background shadow-card overflow-hidden">
+        <div style={{ height: "calc(100vh - 400px)", minHeight: "400px" }}>
+          <VirtualList items={filteredData} />
+        </div>
       </div>
     </div>
   );
