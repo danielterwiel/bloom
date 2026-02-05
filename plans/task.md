@@ -340,9 +340,9 @@ Create Badge for labels and counts.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/components/badge.tsx`
-- [ ] Variants: default, secondary, outline
-- [ ] Export from index.ts
+- [x] `packages/ui/src/components/badge.tsx`
+- [x] Variants: default, secondary, outline
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 

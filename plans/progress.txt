@@ -350,3 +350,31 @@ Acceptance criteria verified:
 
 Next up: PRD-13 (Badge), PRD-14 (Card), PRD-15 (Dialog), PRD-16 (Slider), PRD-17 (MultiSelect)
 Or: PRD-23 (Data Types) to start the Data Package track
+
+=== PRD-13: Badge Component ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/components/badge.tsx with:
+  - CVA-based badgeVariants function
+  - 3 variants: default, secondary, outline
+  - Uses theme tokens (bg-primary, bg-secondary, text colors, border)
+  - forwardRef support for ref forwarding
+  - Accepts className prop that merges with base styles via cn()
+- Created packages/ui/src/__tests__/badge.test.tsx with 11 tests:
+  - Tests for all 3 variants (default, secondary, outline)
+  - Tests for base styles across all variants
+  - Tests for component props (className, displayName, standard span attributes)
+  - Tests for rendering with various children (text, numbers, arrays)
+- Updated packages/ui/src/index.ts to export Badge, badgeVariants, BadgeProps
+
+Acceptance criteria verified:
+- All variants render correctly (tested via badgeVariants function)
+- Uses theme tokens (bg-primary, bg-secondary, text-primary-foreground, border)
+- Unit tests pass: 75 tests total (11 badge + 16 checkbox + 16 select + 11 input + 13 button + 6 utils + 2 sample)
+- npm run typecheck passes (2 successful tasks)
+- npm run test passes
+
+Next up: PRD-14 (Card), PRD-15 (Dialog), PRD-16 (Slider), PRD-17 (MultiSelect)
+Or: PRD-23 (Data Types) to start the Data Package track
