@@ -1,0 +1,7 @@
+{
+  "source": "secondsky/claude-skills/plugins/turborepo/skills/turborepo",
+  "sourceType": "git",
+  "repoUrl": "https://github.com/secondsky/claude-skills",
+  "subpath": "plugins/turborepo/skills/turborepo",
+  "installedAt": "2026-01-20T16:38:17.714Z"
+}

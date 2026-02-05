@@ -1,0 +1,10 @@
+{
+  "source": "secondsky/claude-skills/plugins/tailwind-v4-shadcn/skills/tailwind-v4-shadcn",
+  "sourceType": "git",
+  "repoUrl": "https://github.com/secondsky/claude-skills",
+  "subpath": "plugins/tailwind-v4-shadcn/skills/tailwind-v4-shadcn",
+  "installedAt": "2026-01-20T15:23:17.330Z",
+  "customized": true,
+  "customizedAt": "2026-02-05",
+  "customizedNote": "Rewritten for project: Tailwind v4 + Base UI + OKLCH (no shadcn, no dark mode)"
+}

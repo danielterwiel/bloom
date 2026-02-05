@@ -1,20 +1,18 @@
 import type { APIRoute } from "astro";
 import { companies } from "@repo/data";
 
-export const GET: APIRoute = () => {
-  const data = companies;
+// Pre-serialize once at module load instead of on every request
+const serialized = JSON.stringify({
+  data: companies,
+  total: companies.length,
+});
 
-  return new Response(
-    JSON.stringify({
-      data,
-      total: data.length,
-    }),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=3600, s-maxage=86400",
-      },
+export const GET: APIRoute = () => {
+  return new Response(serialized, {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "public, max-age=3600, s-maxage=86400",
     },
-  );
+  });
 };

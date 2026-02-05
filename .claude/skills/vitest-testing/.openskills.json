@@ -1,0 +1,7 @@
+{
+  "source": "secondsky/claude-skills/plugins/vitest-testing/skills/vitest-testing",
+  "sourceType": "git",
+  "repoUrl": "https://github.com/secondsky/claude-skills",
+  "subpath": "plugins/vitest-testing/skills/vitest-testing",
+  "installedAt": "2026-01-20T15:25:45.881Z"
+}

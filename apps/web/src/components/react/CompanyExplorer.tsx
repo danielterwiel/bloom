@@ -32,11 +32,11 @@ export function CompanyExplorer() {
     return applyAllFilters(state.data, filters);
   }, [state, filters]);
 
-  const fetchCompanies = React.useCallback(async () => {
+  const fetchCompanies = React.useCallback(async (signal?: AbortSignal) => {
     setState({ status: "loading" });
 
     try {
-      const response = await fetch("/api/companies");
+      const response = await fetch("/api/companies", { signal });
 
       if (!response.ok) {
         throw new Error(`Failed to fetch companies: ${response.status} ${response.statusText}`);
@@ -45,13 +45,16 @@ export function CompanyExplorer() {
       const json = (await response.json()) as ApiResponse;
       setState({ status: "success", data: json.data, total: json.total });
     } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return;
       const message = error instanceof Error ? error.message : "An unexpected error occurred";
       setState({ status: "error", message });
     }
   }, []);
 
   React.useEffect(() => {
-    void fetchCompanies();
+    const controller = new AbortController();
+    void fetchCompanies(controller.signal);
+    return () => controller.abort();
   }, [fetchCompanies]);
 
   if (state.status === "loading") {

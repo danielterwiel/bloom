@@ -1,0 +1,7 @@
+{
+  "source": "secondsky/claude-skills/plugins/tanstack-start/skills/tanstack-start",
+  "sourceType": "git",
+  "repoUrl": "https://github.com/secondsky/claude-skills",
+  "subpath": "plugins/tanstack-start/skills/tanstack-start",
+  "installedAt": "2026-01-20T15:23:55.313Z"
+}

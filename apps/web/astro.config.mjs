@@ -9,5 +9,19 @@ export default defineConfig({
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: [
+        "react",
+        "react-dom",
+        "@tanstack/react-virtual",
+        "@base-ui/react/select",
+        "@base-ui/react/checkbox",
+        "@base-ui/react/dialog",
+        "@base-ui/react/slider",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+      ],
+    },
   },
 });
