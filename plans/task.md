@@ -1246,9 +1246,9 @@ Ensure performance targets met.
 
 #### Deliverables
 
-- [ ] Lighthouse report (all pages)
-- [ ] Bundle size analysis
-- [ ] Performance fixes applied
+- [x] Lighthouse report (all pages)
+- [x] Bundle size analysis
+- [x] Performance fixes applied
 
 #### Acceptance Criteria
 

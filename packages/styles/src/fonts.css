@@ -3,7 +3,7 @@
  * - Playfair Display: Used for headings (serif, elegant)
  * - Inter: Used for body text (sans-serif, highly legible)
  *
- * Using Google Fonts with display=swap for better performance
+ * Fonts are loaded via <link> tags in BaseLayout.astro for better performance.
+ * Using CSS @import for Google Fonts creates a render-blocking chain.
+ * The <link> approach lets the browser discover fonts during HTML parsing.
  */
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
