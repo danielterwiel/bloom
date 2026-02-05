@@ -690,13 +690,13 @@ Export all data package contents.
 
 #### Deliverables
 
-- [ ] `packages/data/src/index.ts` barrel export
-- [ ] Verify all types, data, and functions exported
+- [x] `packages/data/src/index.ts` barrel export
+- [x] Verify all types, data, and functions exported
 
 #### Acceptance Criteria
 
-1. `import { FlowerCompany, companies, filterByText } from '@repo/data'` works
-2. Tree-shaking works
+1. [x] `import { FlowerCompany, companies, filterByText } from '@repo/data'` works
+2. [x] Tree-shaking works
 
 ---
 
