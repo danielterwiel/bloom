@@ -908,3 +908,29 @@ Acceptance criteria verified:
 Next up: PRD-28 (Base Layout) - depends on PRD-27 ✓
 Or: PRD-29 (Header & Footer) after PRD-28
 
+=== PRD-28: Base Layout ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/layouts/BaseLayout.astro with:
+  - Import of global.css (which imports @repo/styles fonts and base.css)
+  - ClientRouter component in head for View Transitions (Astro 5 renamed ViewTransitions to ClientRouter)
+  - Slot for page content
+  - Configurable meta tags (title, description) via Props interface
+  - Default title: "Flower Industry Directory"
+  - Default description with comprehensive text
+- Updated apps/web/src/pages/index.astro to use BaseLayout
+- Fixed Counter.tsx JSX pragma to use react jsxImportSource (was using astro's JSX types)
+
+Note: Astro 5 deprecated ViewTransitions in favor of ClientRouter. Using the new component name.
+
+Acceptance criteria verified:
+- Layout renders correctly (build succeeds, page uses BaseLayout)
+- Styles applied globally (via global.css import in BaseLayout)
+- View Transitions enabled (ClientRouter component in head)
+- npm run typecheck passes (7 successful tasks)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-29 (Header & Footer) - depends on PRD-28 ✓
+

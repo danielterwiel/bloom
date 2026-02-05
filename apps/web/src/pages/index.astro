@@ -1,19 +1,10 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flower Industry Directory</title>
-    <meta name="description" content="Explore the global flower industry directory" />
-  </head>
-  <body class="min-h-screen">
-    <main class="p-content">
-      <h1 class="text-4xl font-bold text-primary">Flower Industry Directory</h1>
-      <p class="mt-4 text-foreground-muted">Welcome to the flower industry directory.</p>
-    </main>
-  </body>
-</html>
+<BaseLayout>
+  <main class="p-content">
+    <h1 class="text-4xl font-bold text-primary">Flower Industry Directory</h1>
+    <p class="mt-4 text-foreground-muted">Welcome to the flower industry directory.</p>
+  </main>
+</BaseLayout>

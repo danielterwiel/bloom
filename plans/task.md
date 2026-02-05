@@ -739,11 +739,11 @@ Create shared BaseLayout with head, slots.
 
 #### Deliverables
 
-- [ ] `apps/web/src/layouts/BaseLayout.astro`
-- [ ] Imports styles package CSS
-- [ ] ViewTransitions component in head
-- [ ] Slot for page content
-- [ ] Meta tags (title, description)
+- [x] `apps/web/src/layouts/BaseLayout.astro`
+- [x] Imports styles package CSS
+- [x] ViewTransitions component in head
+- [x] Slot for page content
+- [x] Meta tags (title, description)
 
 #### Acceptance Criteria
 
