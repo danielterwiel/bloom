@@ -55,11 +55,11 @@ Create packages/tsconfig with base, react, and astro configs.
 Configure Vitest for monorepo unit testing.
 
 #### Deliverables
-- [ ] Vitest installed at root
-- [ ] `vitest.workspace.ts` configured for all packages
-- [ ] `packages/ui/src/__tests__/sample.test.ts` (placeholder)
-- [ ] `test` script in root package.json
-- [ ] `test` pipeline in turbo.json
+- [x] Vitest installed at root
+- [x] `vitest.workspace.ts` configured for all packages
+- [x] `packages/ui/src/__tests__/sample.test.ts` (placeholder)
+- [x] `test` script in root package.json
+- [x] `test` pipeline in turbo.json
 
 #### Acceptance Criteria
 1. `bun test` runs Vitest

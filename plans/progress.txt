@@ -39,3 +39,28 @@ Acceptance criteria verified:
 
 Next up: PRD-3 (Vitest Setup), PRD-4 (Playwright Setup), or PRD-6 (Tailwind Theme)
 All three can run in parallel since PRD-2 is complete
+
+=== PRD-3: Vitest Setup ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Installed vitest and @vitest/coverage-v8 at root level
+- Created vitest.workspace.ts to discover tests across packages/*/vitest.config.ts and apps/*/vitest.config.ts
+- Created packages/ui/ package scaffold:
+  - package.json with @repo/ui name, test and typecheck scripts
+  - tsconfig.json extending @repo/tsconfig/base.json
+  - vitest.config.ts for ui package
+  - src/index.ts barrel export placeholder
+  - src/__tests__/sample.test.ts with basic passing tests
+
+Note: The test and test pipeline in turbo.json already existed from PRD-1.
+
+Acceptance criteria verified:
+- npm test runs Vitest via turbo (2 tests pass in 465ms)
+- Sample test passes
+- turbo test runs tests across packages (1 successful task)
+- npm run typecheck passes for @repo/ui
+
+Next up: PRD-4 (Playwright Setup), PRD-6 (Tailwind Theme Tokens)
+Both can run in parallel
