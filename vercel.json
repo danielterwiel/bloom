@@ -3,5 +3,6 @@
   "buildCommand": "bunx turbo build --filter=@repo/web",
   "installCommand": "bun install --frozen-lockfile",
   "outputDirectory": "apps/web/.vercel/output",
-  "framework": null
+  "framework": null,
+  "regions": ["ams1"]
 }
