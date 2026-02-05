@@ -462,3 +462,46 @@ Acceptance criteria verified:
 
 Next up: PRD-16 (Slider), PRD-17 (MultiSelect)
 Or: PRD-23 (Data Types) to start the Data Package track
+
+=== PRD-16: Slider Component ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/components/slider.tsx with:
+  - Uses BaseUI Slider primitives internally (Root, Control, Track, Indicator, Thumb)
+  - SliderProps interface with value, defaultValue, onValueChange, onValueCommitted, min, max, step, disabled, name, orientation, className, aria-label, getAriaLabel, getAriaValueText
+  - Support for single value (number) and range mode (two thumbs with [number, number] array)
+  - Range mode determined automatically by array value/defaultValue
+  - Horizontal and vertical orientation support
+  - Styled with theme tokens (bg-muted for track, bg-primary for indicator, border-primary for thumbs)
+  - Focus ring styling with ring-primary
+  - Cursor styling (grab/grabbing) for drag state via data-[dragging]
+  - forwardRef support for ref forwarding
+- Created packages/ui/src/__tests__/slider.test.tsx with 28 tests:
+  - Tests for displayName and basic rendering
+  - Tests for single value props (value, defaultValue, onValueChange, onValueCommitted)
+  - Tests for range slider props (array value, array defaultValue)
+  - Tests for configuration props (min, max, step, disabled, name, className)
+  - Tests for accessibility props (aria-label, getAriaLabel, getAriaValueText)
+  - Tests for orientation (horizontal default, vertical)
+  - Tests for controlled vs uncontrolled usage (single and range)
+  - Tests for step values (integer and decimal)
+- Updated packages/ui/src/index.ts to export Slider and SliderProps
+
+Note: BaseUI Slider provides built-in accessibility features:
+- Keyboard navigation (Arrow keys for step, Page Up/Down for large step)
+- ARIA attributes for slider role
+- Focus management
+
+Acceptance criteria verified:
+- Draggable thumb(s) (via BaseUI primitives)
+- Keyboard accessible (built-in from BaseUI)
+- Value updates correctly (via onValueChange/onValueCommitted callbacks)
+- Unit tests pass: 164 tests total (28 slider + 40 dialog + 21 card + 11 badge + 16 checkbox + 16 select + 11 input + 13 button + 6 utils + 2 sample)
+- npm run typecheck passes (2 successful tasks)
+- npm run test passes
+
+Next up: PRD-17 (MultiSelect) - depends on PRD-11 ✓
+Or: PRD-23 (Data Types) to start the Data Package track
+Or: PRD-18 (Base Chart Wrapper) to start the Chart Components track

@@ -410,10 +410,10 @@ Create range Slider using BaseUI primitive.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/components/slider.tsx`
-- [ ] Uses BaseUI Slider internally
-- [ ] Support for range (two thumbs)
-- [ ] Export from index.ts
+- [x] `packages/ui/src/components/slider.tsx`
+- [x] Uses BaseUI Slider internally
+- [x] Support for range (two thumbs)
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 

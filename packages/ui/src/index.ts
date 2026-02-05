@@ -45,3 +45,4 @@ export {
   type DialogDescriptionProps,
   type DialogCloseProps,
 } from "./components/dialog";
+export { Slider, type SliderProps } from "./components/slider";
