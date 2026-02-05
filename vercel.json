@@ -4,5 +4,5 @@
   "installCommand": "bun install",
   "outputDirectory": "apps/web/.vercel/output",
   "framework": null,
-  "regions": ["ams1"]
+  "regions": ["fra1"]
 }
