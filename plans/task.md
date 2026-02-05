@@ -434,11 +434,11 @@ Create MultiSelect for tag/category selection.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/components/multi-select.tsx`
-- [ ] Multiple selection support
-- [ ] Selected items displayed as badges
-- [ ] Clear all button
-- [ ] Export from index.ts
+- [x] `packages/ui/src/components/multi-select.tsx`
+- [x] Multiple selection support
+- [x] Selected items displayed as badges
+- [x] Clear all button
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 

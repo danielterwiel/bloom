@@ -505,3 +505,49 @@ Acceptance criteria verified:
 Next up: PRD-17 (MultiSelect) - depends on PRD-11 ✓
 Or: PRD-23 (Data Types) to start the Data Package track
 Or: PRD-18 (Base Chart Wrapper) to start the Chart Components track
+
+=== PRD-17: MultiSelect Component ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/components/multi-select.tsx with:
+  - Uses BaseUI Select primitives with multiple={true} for native multi-select support
+  - MultiSelectOption interface with value, label, and optional disabled properties
+  - MultiSelectProps interface with options, placeholder, value, defaultValue, onValueChange, disabled, required, name, className
+  - Selected items displayed as styled badges with remove buttons (X icon)
+  - Clear all button that appears when items are selected
+  - Controlled (value + onValueChange) and uncontrolled (defaultValue) usage support
+  - Styled with theme tokens (bg-background, border-border, bg-primary for badges, etc.)
+  - Animation support with scale and opacity transitions
+  - Keyboard navigation via BaseUI (built-in)
+- Created packages/ui/src/__tests__/multi-select.test.tsx with 33 tests:
+  - Tests for displayName
+  - Tests for options prop (empty, disabled items)
+  - Tests for placeholder prop
+  - Tests for value prop (controlled with array)
+  - Tests for defaultValue prop (uncontrolled with array)
+  - Tests for onValueChange callback
+  - Tests for disabled, required, name, className props
+  - Tests for MultiSelectOption type requirements
+  - Tests for controlled vs uncontrolled usage
+  - Tests for form integration
+  - Tests for edge cases (single option, many options, special chars, order)
+- Updated packages/ui/src/index.ts to export MultiSelect, MultiSelectProps, MultiSelectOption
+
+Note: BaseUI Select's multiple prop enables native multi-selection with keyboard support (Space to toggle items, arrow keys to navigate).
+
+Acceptance criteria verified:
+- Multiple items selectable (via BaseUI multiple={true})
+- Badges show selected items (styled badges with labels)
+- Items can be removed (X button on each badge)
+- Clear all works (X button next to chevron icon)
+- Unit tests pass: 197 tests total (33 multi-select + 28 slider + 40 dialog + 21 card + 11 badge + 16 checkbox + 16 select + 11 input + 13 button + 6 utils + 2 sample)
+- npm run typecheck passes (2 successful tasks)
+- npm run test passes
+
+Note: UI Components (PRDs 8-17) are now COMPLETE.
+
+Next up: PRD-18 (Base Chart Wrapper) to start the Chart Components track
+Or: PRD-23 (Data Types) to start the Data Package track
+Or: PRD-27 (Astro App Initialization) to start the Astro App Setup track
