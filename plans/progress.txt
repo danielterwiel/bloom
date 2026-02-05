@@ -1429,3 +1429,30 @@ Acceptance criteria verified:
 Next up: PRD-44 (Multi-Select Filters) - depends on PRD-42 ✓, PRD-17 ✓
 Or: PRD-45 (Single-Select & Range Filters) - depends on PRD-42 ✓, PRD-11 ✓, PRD-16 ✓
 
+=== PRD-44: Multi-Select Filters ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Updated apps/web/src/components/react/FilterPanel.tsx with:
+  - Imported MultiSelect from @repo/ui and constants from @repo/data
+  - Created options arrays from CATEGORIES, SPECIALTIES, CERTIFICATIONS, COUNTRIES constants
+  - Replaced 4 placeholder divs with actual MultiSelect components
+  - Category MultiSelect: wired to filters.categories with controlled value
+  - Specialty MultiSelect: wired to filters.specialties with controlled value
+  - Certifications MultiSelect: wired to filters.certifications with controlled value
+  - Country MultiSelect: wired to filters.countries with controlled value
+  - Each shows selected count in placeholder text (e.g., "Category (3)")
+  - Values set to undefined when empty array (clean filter state)
+  - All multi-selects integrate with existing Clear All functionality
+
+Acceptance criteria verified:
+- All four multi-selects work (Category, Specialty, Certifications, Country)
+- Multiple selection allowed (via MultiSelect component from @repo/ui)
+- Badges show count (count shown in placeholder, selected items shown as badges by MultiSelect)
+- Filters combine correctly (via applyAllFilters from @repo/data with AND between, OR within)
+- npm run typecheck passes (7 successful tasks, 0 errors)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-45 (Single-Select & Range Filters) - depends on PRD-42 ✓, PRD-11 ✓, PRD-16 ✓
+

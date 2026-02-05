@@ -1120,11 +1120,11 @@ Add multi-select filters for: Category, Specialty, Certifications, Country.
 
 #### Deliverables
 
-- [ ] Category MultiSelect
-- [ ] Specialty MultiSelect
-- [ ] Certifications MultiSelect
-- [ ] Country MultiSelect
-- [ ] Each shows selected count badge
+- [x] Category MultiSelect
+- [x] Specialty MultiSelect
+- [x] Certifications MultiSelect
+- [x] Country MultiSelect
+- [x] Each shows selected count badge
 
 #### Acceptance Criteria
 

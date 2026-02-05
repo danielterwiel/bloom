@@ -1,7 +1,9 @@
 /** @jsxImportSource react */
 import * as React from "react";
+import { CATEGORIES, SPECIALTIES, CERTIFICATIONS, COUNTRIES } from "@repo/data";
 import type { CompanyFilters } from "@repo/data";
-import { Input } from "@repo/ui";
+import { Input, MultiSelect } from "@repo/ui";
+import type { MultiSelectOption } from "@repo/ui";
 
 export interface FilterPanelProps {
   filters: CompanyFilters;
@@ -31,13 +33,16 @@ function useDebounce<T>(value: T, delay: number): T {
   return debouncedValue;
 }
 
+const categoryOptions: MultiSelectOption[] = CATEGORIES.map((c) => ({ value: c, label: c }));
+const specialtyOptions: MultiSelectOption[] = SPECIALTIES.map((s) => ({ value: s, label: s }));
+const certificationOptions: MultiSelectOption[] = CERTIFICATIONS.map((c) => ({
+  value: c,
+  label: c,
+}));
+const countryOptions: MultiSelectOption[] = COUNTRIES.map((c) => ({ value: c, label: c }));
+
 /**
  * FilterPanel - Container component for all filter controls
- *
- * Provides a grid/flex layout for filter controls with:
- * - Results count display
- * - Clear all button
- * - Slots for individual filter components (to be added in PRDs 43-45)
  */
 export function FilterPanel({
   filters,
@@ -155,22 +160,38 @@ export function FilterPanel({
           />
         </div>
 
-        {/* Multi-select filter slots (PRD-44) */}
-        <div
-          className="h-10 rounded-md border border-dashed border-border bg-muted/30"
-          data-slot="category-filter"
+        {/* Multi-select filters (PRD-44) */}
+        <MultiSelect
+          options={categoryOptions}
+          placeholder={`Category${filters.categories?.length ? ` (${filters.categories.length})` : ""}`}
+          value={filters.categories ?? []}
+          onValueChange={(values) =>
+            onFiltersChange({ ...filters, categories: values.length > 0 ? values : undefined })
+          }
         />
-        <div
-          className="h-10 rounded-md border border-dashed border-border bg-muted/30"
-          data-slot="specialty-filter"
+        <MultiSelect
+          options={specialtyOptions}
+          placeholder={`Specialty${filters.specialties?.length ? ` (${filters.specialties.length})` : ""}`}
+          value={filters.specialties ?? []}
+          onValueChange={(values) =>
+            onFiltersChange({ ...filters, specialties: values.length > 0 ? values : undefined })
+          }
         />
-        <div
-          className="h-10 rounded-md border border-dashed border-border bg-muted/30"
-          data-slot="certifications-filter"
+        <MultiSelect
+          options={certificationOptions}
+          placeholder={`Certifications${filters.certifications?.length ? ` (${filters.certifications.length})` : ""}`}
+          value={filters.certifications ?? []}
+          onValueChange={(values) =>
+            onFiltersChange({ ...filters, certifications: values.length > 0 ? values : undefined })
+          }
         />
-        <div
-          className="h-10 rounded-md border border-dashed border-border bg-muted/30"
-          data-slot="country-filter"
+        <MultiSelect
+          options={countryOptions}
+          placeholder={`Country${filters.countries?.length ? ` (${filters.countries.length})` : ""}`}
+          value={filters.countries ?? []}
+          onValueChange={(values) =>
+            onFiltersChange({ ...filters, countries: values.length > 0 ? values : undefined })
+          }
         />
 
         {/* Single-select and range filter slots (PRD-45) */}
