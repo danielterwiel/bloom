@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npx turbo build --filter=@repo/web",
+  "installCommand": "npm ci",
+  "outputDirectory": "apps/web/.vercel/output",
+  "framework": null
+}

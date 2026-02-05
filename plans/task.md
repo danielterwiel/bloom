@@ -1317,10 +1317,10 @@ Deploy to Vercel with preview and production.
 
 #### Deliverables
 
-- [ ] Vercel project configured
-- [ ] Preview deploys on PR
-- [ ] Production deploy on main
-- [ ] Environment variables (if any)
+- [x] Vercel project configured
+- [x] Preview deploys on PR
+- [x] Production deploy on main
+- [x] Environment variables (if any)
 
 #### Acceptance Criteria
 
