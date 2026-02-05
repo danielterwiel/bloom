@@ -219,12 +219,12 @@ Initialize UI package with BaseUI and utilities.
 
 #### Deliverables
 
-- [ ] `packages/ui/package.json`
-- [ ] `@base-ui-components/react` installed
-- [ ] `class-variance-authority` installed
-- [ ] `tailwind-merge` installed
-- [ ] `packages/ui/src/index.ts` (barrel export)
-- [ ] `packages/ui/src/lib/utils.ts` (cn helper)
+- [x] `packages/ui/package.json`
+- [x] `@base-ui-components/react` installed
+- [x] `class-variance-authority` installed
+- [x] `tailwind-merge` installed
+- [x] `packages/ui/src/index.ts` (barrel export)
+- [x] `packages/ui/src/lib/utils.ts` (cn helper)
 
 #### Acceptance Criteria
 
