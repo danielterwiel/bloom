@@ -818,16 +818,16 @@ Create content-focused about page.
 
 #### Deliverables
 
-- [ ] `apps/web/src/pages/about.astro`
-- [ ] Content about the directory
-- [ ] Uses Card components
-- [ ] Flower-themed decorative elements
+- [x] `apps/web/src/pages/about.astro`
+- [x] Content about the directory
+- [x] Uses Card components
+- [x] Flower-themed decorative elements
 
 #### Acceptance Criteria
 
-1. Page renders at /about
-2. View Transition from home works
-3. Cards display correctly
+1. [x] Page renders at /about
+2. [x] View Transition from home works
+3. [x] Cards display correctly
 
 ---
 

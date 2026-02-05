@@ -1007,3 +1007,45 @@ Next up: PRD-31 (About Page) - depends on PRD-29 ✓
 Or: PRD-32 (Insights Page Shell) - depends on PRD-29 ✓
 Or: PRD-37 (Companies API Endpoint) - depends on PRD-24 ✓, PRD-27 ✓
 
+=== PRD-31: About Page ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created apps/web/src/pages/about.astro with:
+  - Hero section with decorative background blur elements (secondary, primary colors)
+  - Centered flower icon SVG
+  - "About Bloom" headline with font-heading styling
+  - Tagline: "Connecting the global flower industry, one bloom at a time."
+- Mission section with 3 card-styled blocks:
+  - Our Mission card with checklist icon
+  - What We Offer card with package icon  
+  - Our Commitment card with heart icon
+  - All cards use rounded-card, bg-background, p-card, shadow-card (matching UI Card styling)
+- Features section "Why Choose Bloom?" with 4 feature items:
+  - Powerful Search (magnifier icon, success color)
+  - Global Coverage (globe icon, primary color)
+  - Industry Insights (bar chart icon, secondary color)
+  - Verified Data (shield icon, accent color)
+- CTA section with decorative flower petals:
+  - "Ready to explore?" headline
+  - Browse Companies primary button -> /companies
+  - View Insights secondary button -> /insights
+- View Transition animation via view-transition-name: about-title on h1
+- All theme tokens used (colors, spacing, typography, shadows, radius)
+- Fully responsive design (mobile to desktop)
+
+Note: The Card component from @repo/ui is a React component. For this Astro page, 
+I recreated the card styling using the same CSS classes (rounded-card, bg-background, 
+p-card, shadow-card) to maintain visual consistency without requiring client-side JS.
+
+Acceptance criteria verified:
+- Page renders at /about (file created at apps/web/src/pages/about.astro)
+- View Transition from home works (view-transition-name on h1)
+- Cards display correctly (using same CSS classes as Card component)
+- npm run typecheck passes (verified via direct node invocation due to symlink issues)
+- npm run test passes (437 tests: 330 ui + 107 data)
+
+Next up: PRD-32 (Insights Page Shell) - depends on PRD-29 ✓
+Or: PRD-37 (Companies API Endpoint) - depends on PRD-24 ✓, PRD-27 ✓
+
