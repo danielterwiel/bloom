@@ -248,3 +248,34 @@ Note: Styles Package (PRDs 6-7) is now COMPLETE.
 
 Next up: PRD-10 (Input), PRD-11 (Select), PRD-12 (Checkbox), PRD-13 (Badge), PRD-14 (Card)
 Or: PRD-23 (Data Types) to start the Data Package track
+
+=== PRD-10: Input Component ===
+Date: 2026-02-05
+Status: COMPLETED
+
+What was done:
+- Created packages/ui/src/components/input.tsx with:
+  - Styled text input using theme tokens (bg-background, border-border, text colors)
+  - Focus states with ring-2 and ring-primary
+  - Error state support via `error` prop (switches border to destructive, ring to destructive)
+  - aria-invalid attribute set when error is true for accessibility
+  - forwardRef for ref forwarding
+  - Accepts all standard input attributes (type, placeholder, disabled, etc.)
+  - File input styling support
+- Created packages/ui/src/__tests__/input.test.tsx with 11 tests:
+  - Tests for displayName, default props, type prop
+  - Tests for className, placeholder, error, disabled props
+  - Tests for standard input attributes
+  - Tests for controlled (value/onChange) and uncontrolled (defaultValue) usage
+- Updated packages/ui/src/index.ts to export Input and InputProps
+
+Acceptance criteria verified:
+- Renders correctly (component created and tested)
+- Focus states visible (focus-visible:ring-2 focus-visible:ring-primary)
+- Error state styling works (border-destructive, ring-destructive)
+- Unit tests pass: 32 tests total (11 input + 13 button + 6 utils + 2 sample)
+- npm run typecheck passes (2 successful tasks)
+- npm run test passes
+
+Next up: PRD-11 (Select), PRD-12 (Checkbox), PRD-13 (Badge), PRD-14 (Card), PRD-15 (Dialog), PRD-16 (Slider)
+Or: PRD-23 (Data Types) to start the Data Package track

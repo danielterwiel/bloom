@@ -268,10 +268,10 @@ Create styled text Input component.
 
 #### Deliverables
 
-- [ ] `packages/ui/src/components/input.tsx`
-- [ ] Styled with theme tokens
-- [ ] Support for error state
-- [ ] Export from index.ts
+- [x] `packages/ui/src/components/input.tsx`
+- [x] Styled with theme tokens
+- [x] Support for error state
+- [x] Export from index.ts
 
 #### Acceptance Criteria
 

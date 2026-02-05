@@ -1,0 +1,38 @@
+import * as React from "react";
+import { cn } from "../lib/utils";
+
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  /** Whether the input is in an error state */
+  error?: boolean;
+}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type = "text", error, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={cn(
+          // Base styles
+          "flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm transition-colors",
+          // Placeholder
+          "placeholder:text-foreground-muted",
+          // Focus states
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary",
+          // Disabled state
+          "disabled:cursor-not-allowed disabled:opacity-50",
+          // File input styling
+          "file:border-0 file:bg-transparent file:text-sm file:font-medium",
+          // Default border vs error state
+          error ? "border-destructive focus-visible:ring-destructive" : "border-border",
+          className,
+        )}
+        ref={ref}
+        aria-invalid={error ? "true" : undefined}
+        {...props}
+      />
+    );
+  },
+);
+Input.displayName = "Input";
+
+export { Input };
